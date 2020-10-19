@@ -34,7 +34,6 @@ require_once(CMS_HELPER . SEP . 'tcpdf/tcpdf.php');
 require_once(CMS_HELPER . SEP . 'base/collection.php');
 require_once(CMS_HELPER . SEP . 'helper.php');
 require_once(CMS_HELPER . SEP . 'forms.php');
-require_once(CMS_HELPER . SEP . 'chessTower.php');
 require_once(CMS_HELPER . SEP . 'session.php');
 require_once(CMS_HELPER . SEP . 'response.php');
 require_once(CMS_HELPER . SEP . 'validator.php');
@@ -61,6 +60,7 @@ require_once(CMS_MODULE . SEP . 'Contract/collection.php');
 require_once(CMS_MODULE . SEP . 'ObjectStatus/collection.php');
 require_once(CMS_MODULE . SEP . 'Buildings/collection.php');
 require_once(CMS_MODULE . SEP . 'Flats/collection.php');
+//require_once(CMS_MODULE . SEP . 'Flats/chessTower.php');
 require_once(CMS_MODULE . SEP . 'logger/collection.php');
 
 /*

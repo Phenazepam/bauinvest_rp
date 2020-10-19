@@ -1,5 +1,5 @@
 <?php
-namespace RedCore;
+namespace RedCore\Flats;
 
 class ChessTower{
 
@@ -9,7 +9,13 @@ class ChessTower{
 
     private $fields = array();
     private $rs='';
-
+    private $rooms = array(
+		'С', '1', '2', '3', '4', '5'
+    );
+    private $flat_status = array(
+		'', 'free', 'book', 'book', 'sold',
+    );
+    
 
     public static function Create($cols, $rows, $flats=array()) {
 		$obj           = new ChessTower;
@@ -97,13 +103,52 @@ class ChessTower{
                     <tbody>';
         
         $temp='';
+        var_dump($flats);
         for($y=$this->rows; $y > 0; $y--){
             $temp .=  '<tr>';
             for($x=1; $x<=$this->cols; $x++){
                 $found = false;
                 foreach($flats as $val){
                     if(($val["y"]==$y) AND ($val["x"]==$x)){
-                        $temp.= '<td class="section__houseTd section__houseTd-189 section__houseTd-sold section__houseTd-vkbn-sold section__houseTd-special-false section__houseTd-red-false" data-house="pochta18" data-house-name="ЖК «Почтовый», Дом 18" data-section="" data-entrance="1" data-floor="22" data-rooms="2" data-area-full="64.50" data-area-live="62.90" data-area-rooms="32.30" data-area-kitchen="14.60" data-num="189" "="" data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" data-status="sold" data-status-name="продана" data-status-vkbn="sold" data-status-vkbn-name="продана" data-book-time="" data-cost-m2="51000.00" data-cost-total="3289500.00" data-events="" data-events-name="" data-user="undefined" data-date="undefined" data-fio="undefined" data-phone="undefined" data-comment="undefined" data-special="false" data-red="false"><span class="section__houseNum section__houseNum-room">'. $val["rooms"].'</span><span class="section__houseNum section__houseNum-number g-hidden">189</span></td>';
+                        //$temp.= '<td class="section__houseTd section__houseTd-189 section__houseTd-sold section__houseTd-vkbn-sold section__houseTd-special-false section__houseTd-red-false" data-house="pochta18" data-house-name="ЖК «Почтовый», Дом 18" data-section="" data-entrance="1" data-floor="22" data-rooms="2" data-area-full="64.50" data-area-live="62.90" data-area-rooms="32.30" data-area-kitchen="14.60" data-num="189" "="" data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" data-status="sold" data-status-name="продана" data-status-vkbn="sold" data-status-vkbn-name="продана" data-book-time="" data-cost-m2="51000.00" data-cost-total="3289500.00" data-events="" data-events-name="" data-user="undefined" data-date="undefined" data-fio="undefined" data-phone="undefined" data-comment="undefined" data-special="false" data-red="false"><span class="section__houseNum section__houseNum-room">'. $val["rooms"].'</span><span class="section__houseNum section__houseNum-number g-hidden">189</span></td>';
+                        
+                        $temp.= '<td class="section__houseTd 
+                                section__houseTd-'. $this->flat_status[$val["flatStatus"]] .' 
+                                section__houseTd-vkbn-'. $this->flat_status[$val["flatStatus"]] .' 
+                                section__houseTd-special-false 
+                                section__houseTd-red-false" 
+                                data-house="pochta18" 
+                                data-house-name="ЖК «Почтовый», Дом 18" 
+                                data-section="" 
+                                data-entrance="1" 
+                                data-floor="22" 
+                                data-rooms="'. $this->rooms[$val["rooms"]] .'" 
+                                data-area-full="'. $val["spaceFull"] .'" 
+                                data-area-live="'. $val["spaceWithoutBalc"] .'" 
+                                data-area-rooms="32.30" 
+                                data-area-kitchen="14.60" 
+                                data-num="189" "="" 
+                                data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" 
+                                data-status="sold" 
+                                data-status-name="продана" 
+                                data-status-vkbn="sold" 
+                                data-status-vkbn-name="продана" 
+                                data-book-time="" 
+                                data-cost-m2="51000.00" 
+                                data-cost-total="3289500.00" 
+                                data-events="" 
+                                data-events-name="" 
+                                data-user="undefined" 
+                                data-date="undefined" 
+                                data-fio="undefined" 
+                                data-phone="undefined" 
+                                data-comment="undefined" 
+                                data-special="false" 
+                                data-red="false">
+                                <span class="section__houseNum section__houseNum-room">'. 
+                                $val["rooms"].'</span>
+                                <span class="section__houseNum section__houseNum-number g-hidden">
+                                </span></td>';
                         $found = true;
                     }
                 }

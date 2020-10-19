@@ -18,6 +18,9 @@ $item = $item->object;
 if(empty($item->id_b)){
 	$item->id_b = $id_b;
 }
+else{
+	$id_b = $item->id_b;
+}
 
 ObjectStatus::setObject();
 	$ObjectStatus = ObjectStatus::getList();
@@ -28,6 +31,10 @@ ObjectStatus::setObject();
 	    $ObjectStatus_list["list"][$key] = $temp->getFieldSet("objectstatus-list")->title;
 	}
 
+	$rooms = array(
+		"list" => array('Студия', '1 комнатная', '2 комнатная', '3 комнатная', '4 комнатная', '5 комнатная')
+	);
+
 $form = Forms::Create()
 	->add("action",   "action",   "hidden", "action", $html_object . ".store.do", 6, false)
 	->add("redirect", "redirect", "hidden", "redirect", "flats-list?building_id=$id_b", 6, false)
@@ -37,7 +44,7 @@ $form = Forms::Create()
 	->add("y", "Этаж №", "text",   $html_object . "[y]", htmlspecialchars($item->y), 6, true)
 	->add("x", "Стояк №", "text",   $html_object . "[x]", htmlspecialchars($item->x), 6, true)
 	->add("number", "Номер квартиры", "text", $html_object . "[params][number]", htmlspecialchars($item->params->number), 6, true)
-	->add("rooms", "Количество комнат", "text", $html_object . "[params][rooms]", htmlspecialchars($item->params->rooms), 6, true)
+	->add("rooms", "Количество комнат", "select", $html_object . "[params][rooms]", htmlspecialchars($item->params->rooms), 6, true, $rooms)
 	->add("spaceFull", "Полная площадь", "text", $html_object . "[params][spaceFull]", htmlspecialchars($item->params->spaceFull), 6, true)
 	->add("spaceWithoutBalc", "Площадь без балкона", "text", $html_object . "[params][spaceWithoutBalc]", htmlspecialchars($item->params->spaceWithoutBalc), 6, true)
 	->add("sqmtPrice", "Цена за кв.м.", "text", $html_object . "[params][sqmtPrice]", htmlspecialchars($item->params->sqmtPrice), 6, true)

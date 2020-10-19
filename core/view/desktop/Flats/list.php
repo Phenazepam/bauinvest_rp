@@ -2,9 +2,11 @@
 use \RedCore\Buildings\Collection as Buildings;
 use \RedCore\Flats\Collection as Flats;
 use \RedCore\ObjectStatus\Collection as ObjectStatus;
-use \RedCore\ChessTower as ChessTower;
+use \RedCore\Flats\ChessTower as ChessTower;
 use RedCore\Request as Request;
 use \RedCore\Where as Where;
+
+$ChessTower = require('list.chessTower.php');
 
 $lb_params = array(
 	"id_b" => Request::vars("building_id"),
@@ -36,13 +38,17 @@ $entrance = $temp->object->entrance;
 $id_b = $temp->object->id;
 $row = $temp->object->params->levels;
 $col = $temp->object->params->flatsOnLvl;
-//var_dump($items);
 $flats= array();
 foreach($items as $item){
   $flats[]=array(
     "x" =>(int)$item->object->x,
     "y" => (int)$item->object->y,
-    "rooms" => $item->object->params->rooms,
+	"rooms" => $item->object->params->rooms,
+	"spaceFull" => $item->object->params->spaceFull,
+	"spaceWithoutBalc" => $item->object->params->spaceWithoutBalc,
+	"sqmtPrice" => $item->object->params->sqmtPrice,
+	"totalPrice" => $item->object->params->totalPrice,
+	"flatStatus" => $item->object->params->flatStatus,
   );
 } 
 //var_dump($flats);
