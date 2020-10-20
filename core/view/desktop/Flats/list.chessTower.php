@@ -103,7 +103,7 @@ class ChessTower{
                     <tbody>';
         
         $temp='';
-        var_dump($flats);
+        //var_dump($flats);
         for($y=$this->rows; $y > 0; $y--){
             $temp .=  '<tr>';
             for($x=1; $x<=$this->cols; $x++){
@@ -112,30 +112,32 @@ class ChessTower{
                     if(($val["y"]==$y) AND ($val["x"]==$x)){
                         //$temp.= '<td class="section__houseTd section__houseTd-189 section__houseTd-sold section__houseTd-vkbn-sold section__houseTd-special-false section__houseTd-red-false" data-house="pochta18" data-house-name="ЖК «Почтовый», Дом 18" data-section="" data-entrance="1" data-floor="22" data-rooms="2" data-area-full="64.50" data-area-live="62.90" data-area-rooms="32.30" data-area-kitchen="14.60" data-num="189" "="" data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" data-status="sold" data-status-name="продана" data-status-vkbn="sold" data-status-vkbn-name="продана" data-book-time="" data-cost-m2="51000.00" data-cost-total="3289500.00" data-events="" data-events-name="" data-user="undefined" data-date="undefined" data-fio="undefined" data-phone="undefined" data-comment="undefined" data-special="false" data-red="false"><span class="section__houseNum section__houseNum-room">'. $val["rooms"].'</span><span class="section__houseNum section__houseNum-number g-hidden">189</span></td>';
                         
-                        $temp.= '<td class="section__houseTd 
+                        $temp.= '<td 
+                                class="section__houseTd
+                                click-td                                
                                 section__houseTd-'. $this->flat_status[$val["flatStatus"]] .' 
                                 section__houseTd-vkbn-'. $this->flat_status[$val["flatStatus"]] .' 
                                 section__houseTd-special-false 
-                                section__houseTd-red-false" 
-                                data-house="pochta18" 
-                                data-house-name="ЖК «Почтовый», Дом 18" 
+                                section__houseTd-red-false"
+                                data-flat-id = "'. $val["id"] .'"
+                                data-action="openAlert" 
+                                data-complex="'. $val["complex"] .'" 
+                                data-house="'. $val["liter"] .'" 
                                 data-section="" 
-                                data-entrance="1" 
-                                data-floor="22" 
+                                data-entrance="'. $val["entrance"] .'" 
+                                data-floor="'. $val["y"] .'" 
                                 data-rooms="'. $this->rooms[$val["rooms"]] .'" 
                                 data-area-full="'. $val["spaceFull"] .'" 
                                 data-area-live="'. $val["spaceWithoutBalc"] .'" 
-                                data-area-rooms="32.30" 
-                                data-area-kitchen="14.60" 
-                                data-num="189" "="" 
+                                data-num="'.  $val["number"] .'" "="" 
                                 data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" 
                                 data-status="sold" 
                                 data-status-name="продана" 
                                 data-status-vkbn="sold" 
                                 data-status-vkbn-name="продана" 
                                 data-book-time="" 
-                                data-cost-m2="51000.00" 
-                                data-cost-total="3289500.00" 
+                                data-cost-m2="'. $val["sqmtPrice"] .'" 
+                                data-cost-total="'. $val["totalPrice"].'" 
                                 data-events="" 
                                 data-events-name="" 
                                 data-user="undefined" 
@@ -145,15 +147,17 @@ class ChessTower{
                                 data-comment="undefined" 
                                 data-special="false" 
                                 data-red="false">
-                                <span class="section__houseNum section__houseNum-room">'. 
+                                <span class="section__houseNum section__houseNum-room" >'. 
                                 $val["rooms"].'</span>
-                                <span class="section__houseNum section__houseNum-number g-hidden">
-                                </span></td>';
+                                <span class="section__houseNum section__houseNum-number g-hidden" >
+                                </span>
+                                </td>';
                         $found = true;
                     }
                 }
                 if(!$found){
-                    $temp.= '<td class="section__houseTd section__houseTd-189 section__houseTd-free section__houseTd-vkbn-free section__houseTd-special-false section__houseTd-red-false" data-house="pochta18" data-house-name="ЖК «Почтовый», Дом 18" data-section="" data-entrance="1" data-floor="22" data-rooms="2" data-area-full="64.50" data-area-live="62.90" data-area-rooms="32.30" data-area-kitchen="14.60" data-num="189" "="" data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" data-status="sold" data-status-name="продана" data-status-vkbn="sold" data-status-vkbn-name="продана" data-book-time="" data-cost-m2="51000.00" data-cost-total="3289500.00" data-events="" data-events-name="" data-user="undefined" data-date="undefined" data-fio="undefined" data-phone="undefined" data-comment="undefined" data-special="false" data-red="false"><span class="section__houseNum section__houseNum-room">&#65794</span><span class="section__houseNum section__houseNum-number g-hidden">189</span></td>';
+                    $temp.= '<td class="section__houseTd
+                     section__houseTd-189 section__houseTd-free section__houseTd-vkbn-free section__houseTd-special-false section__houseTd-red-false" data-house="pochta18" data-house-name="ЖК «Почтовый», Дом 18" data-section="" data-entrance="1" data-floor="22" data-rooms="2" data-area-full="64.50" data-area-live="62.90" data-area-rooms="32.30" data-area-kitchen="14.60" data-num="189" "="" data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" data-status="sold" data-status-name="продана" data-status-vkbn="sold" data-status-vkbn-name="продана" data-book-time="" data-cost-m2="51000.00" data-cost-total="3289500.00" data-events="" data-events-name="" data-user="undefined" data-date="undefined" data-fio="undefined" data-phone="undefined" data-comment="undefined" data-special="false" data-red="false"><span class="section__houseNum section__houseNum-room">x</span><span class="section__houseNum section__houseNum-number g-hidden">189</span></td>';
                 }
                 
             }
@@ -172,6 +176,9 @@ class ChessTower{
             </div>';
         return $this->rs;
     }
+
+    
+
 
 
 
@@ -287,9 +294,9 @@ main {
 	border-spacing: 1px;
 	border-collapse: separate;
 }
-.section__houseTd-vkbn-sold {
+/* .section__houseTd-vkbn-sold {
 	pointer-events: none;
-}
+} */
 .section__houseTd-noBorder {
 	height: 34px;
 }
@@ -327,7 +334,7 @@ main {
 	width: 28px;
 }
 .section__houseTd-vkbn-book {
-	background: url(../img/book-bg-min.png) center center no-repeat;
+	background: url(../images/tmp/book-bg-min.png) center center no-repeat;
 }
 .section__houseTd-free.section__houseTd-special-true, .section__houseTd-vkbn-free.section__houseTd-special-true, .section__houseTd-book.section__houseTd-special-true, .section__houseTd-vkbn-book.section__houseTd-special-true, .section__houseTd-pay.section__houseTd-special-true, .section__houseTd-vkbn-pay.section__houseTd-special-true {
 	border-color: #2caf31 !important;

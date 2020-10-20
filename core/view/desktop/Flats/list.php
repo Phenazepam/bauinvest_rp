@@ -5,7 +5,9 @@ use \RedCore\ObjectStatus\Collection as ObjectStatus;
 use \RedCore\Flats\ChessTower as ChessTower;
 use RedCore\Request as Request;
 use \RedCore\Where as Where;
+use \RedCore\Flats\CopyFlats as Copy;
 
+require('copyFlats.php');
 $ChessTower = require('list.chessTower.php');
 
 $lb_params = array(
@@ -38,17 +40,24 @@ $entrance = $temp->object->entrance;
 $id_b = $temp->object->id;
 $row = $temp->object->params->levels;
 $col = $temp->object->params->flatsOnLvl;
+
+
 $flats= array();
 foreach($items as $item){
   $flats[]=array(
+	"id" => $item->object->id,
     "x" =>(int)$item->object->x,
     "y" => (int)$item->object->y,
 	"rooms" => $item->object->params->rooms,
 	"spaceFull" => $item->object->params->spaceFull,
 	"spaceWithoutBalc" => $item->object->params->spaceWithoutBalc,
 	"sqmtPrice" => $item->object->params->sqmtPrice,
+	"number" => $item->object->params->number,
 	"totalPrice" => $item->object->params->totalPrice,
 	"flatStatus" => $item->object->params->flatStatus,
+	"complex" => $temp->object->complex,
+	"liter" => $temp->object->liter,
+	"entrance" => $temp->object->entrance,
   );
 } 
 //var_dump($flats);
@@ -117,7 +126,8 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                               Действия
                             </button>
                             <div class="dropdown-menu">
-                              
+                              <a class="dropdown-item DoCopyVertical" data-flat-id=<?=$oFS->id?> onClick="DoCopyVertical()">Копировать квартиру на весь стояк</a>
+                              <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/flats-form?flat_id=<?=$oFS->id?>">Редактировать</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/flats-list?action=flat.delete.do&flat[id]=<?=$oFS->id?>">Удалить</a>
@@ -145,211 +155,151 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
 </div>
 
 
-<style>
-body {
-	margin: 0;
-}
-html {
-	line-height: 1.15;
-	-webkit-text-size-adjust: 100%;
-}
-::selection {
-	background: #b3d4fc;
-	text-shadow: none;
-}
-*, *::before, *::after {
-	-webkit-box-sizing: inherit;
-	box-sizing: inherit;
-	max-height: 999999px;
-}
-html {
-	background: #f5f5f5;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-	color: #161d34;
-	font: 18px/1.35 "Bauinvest RobotoExo", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue Cyr", "Helvetica CY", Roboto, Ubuntu, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-	min-width: 600px;
-	text-align: center;
-}
-.section__houseContent {
-	font-size: 16px;
-	line-height: 20px;
-}
-.section__houseContent {
-	padding: 0 7px;
-	position: relative;
-}
-.section {
-	-webkit-box-sizing: content-box;
-	box-sizing: content-box;
-	position: relative;
-}
-.objectsInfo, .checkMate {
-	padding: 40px;
-}
-.landing__line {
-	margin: 30px 8px 0;
-}
-/* @media only screen and (min-width:1041px) */
-.landing__line {
-	margin-left: auto;
-	margin-right: auto;
-	width: 1020px;
-}
-.g-bgWhite {
-	background: #fff;
-}
-.landing__line-checkMate {
-	position: relative;
-}
-.landing__wrap {
-	margin: 0 auto;
-	max-width: 1920px;
-	overflow: hidden;
-	background: #f3f3f3;
-}
-.landing__wrap-checkMate {
-	overflow: visible;
-}
-/* @media only screen and (min-width:1041px) */
-main {
-	margin-top: 206px;
-}
-/* @media only screen and (min-width:1500px) */
-main {
-	margin-top: 228px;
-}
-/* @media screen and (min-width:1041px) */
-main {
-	margin-top: 170px;
-}
-.main-content {
-	padding-top: 130px;
-}
-/* @media only screen and (min-width:1041px) */
-.main-content {
-	padding-top: 0px;
-}
-.section__houseWrap {
-	display: inline-block;
-	padding: 10px 10px 5px 0;
-	white-space: nowrap;
-}
-.section__houseContent :last-of-type.section__houseWrap {
-	padding-right: 0px;
-}
-.section__house {
-	display: inline-block;
-	vertical-align: top;
-}
-.section__h {
-	padding-bottom: 6px;
-	text-align: center;
-}
-.g-dib {
-	display: inline-block;
-	vertical-align: middle;
-}
-.section__houseTable {
-	border: 1px solid #999;
-	border-spacing: 1px;
-	border-collapse: separate;
-}
-.section__houseTd-vkbn-sold {
-	pointer-events: none;
-}
-.section__houseTd-noBorder {
-	height: 34px;
-}
-/* @media only screen and (min-width:1041px) */
-.section__houseTd-noBorder {
-	padding: 4px;
-}
-/* @media only screen and (min-width:1560px) */
-.section__houseTd-noBorder {
-	padding: 5px;
-}
-.section__houseTd {
-	border: 2px solid #999;
-	cursor: pointer;
-	position: relative;
-}
-.section__houseTd-vkbn-sold, .section__houseTd-vkbn-pay {
-	background: #adadad;
-}
-/* @media only screen and (min-width:1041px) */
-.section__houseNum {
-	padding: 2px 0;
-}
-/* @media only screen and (min-width:1560px) */
-.section__houseNum {
-	padding: 3px 0;
-}
-.g-hidden {
-	display: none !important;
-}
-.section__houseNum {
-	display: block;
-	padding: 0 0;
-	text-align: center;
-	width: 28px;
-}
-.section__houseTd-vkbn-book {
-	background: url(../img/book-bg-min.png) center center no-repeat;
-}
-.section__houseTd-free.section__houseTd-special-true, .section__houseTd-vkbn-free.section__houseTd-special-true, .section__houseTd-book.section__houseTd-special-true, .section__houseTd-vkbn-book.section__houseTd-special-true, .section__houseTd-pay.section__houseTd-special-true, .section__houseTd-vkbn-pay.section__houseTd-special-true {
-	border-color: #2caf31 !important;
-}
-.section__houseTd-free.section__houseTd-red-true, .section__houseTd-vkbn-free.section__houseTd-red-true, .section__houseTd-book.section__houseTd-red-true, .section__houseTd-vkbn-book.section__houseTd-red-true, .section__houseTd-pay.section__houseTd-red-true, .section__houseTd-vkbn-pay.section__houseTd-red-true {
-	border-color: #af2c2c !important;
-}
-.section__roofTopTable {
-	border-collapse: collapse;
-	width: 100%;
-}
-.section__roofBottomTable {
-	border-collapse: collapse;
-	width: 100%;
-}
-.section__roofOuter {
-	background: #999;
-	border-color: #999;
-	padding: 2px;
-}
-.section__roofTd {
-	border: 1px solid #999;
-	padding: 1px;
-}
-.section__roofTd-1 {
-	width: 12%;
-}
-.section__roofTd-2 {
-	width: 9%;
-}
-.section__roofTd-3 {
-	width: 11%;
-}
-.section__roofTd-4 {
-	width: 15%;
-}
-.section__roofTd-5 {
-	width: 17%;
-}
-.section__roofTd-6 {
-	width: 19%;
-}
-.section__roofTd-7 {
-	width: 17%;
-}
-.section__house-floor .section__houseCenterer {
-	margin-top: 14px;
-}
-.section__house-floor .section__houseTable {
-	border-right: 0;
-}
-.section__houseTd-noBorder {
-	border: 0;
-	cursor: auto;
-	padding: 0px;
-}
-</style>
+
+
+	<!-- '<td 
+		class="section__houseTd
+		click-td                                
+		section__houseTd-'. $this->flat_status[$val["flatStatus"]] .' 
+		section__houseTd-vkbn-'. $this->flat_status[$val["flatStatus"]] .' 
+		section__houseTd-special-false 
+		section__houseTd-red-false"
+		data-action="openAlert" 
+		data-complex="'. $val["complex"] .'" 
+		data-house="'. $val["liter"] .'" 
+		data-section="" 
+		data-entrance="'. $val["entrance"] .'" 
+		data-floor="'. $val["y"] .'" 
+		data-rooms="'. $this->rooms[$val["rooms"]] .'" 
+		data-area-full="'. $val["spaceFull"] .'" 
+		data-area-live="'. $val["spaceWithoutBalc"] .'" 
+		data-num="'.  $val["number"] .'" "="" 
+		data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" 
+		data-status="sold" 
+		data-status-name="продана" 
+		data-status-vkbn="sold" 
+		data-status-vkbn-name="продана" 
+		data-book-time="" 
+		data-cost-m2="'. $val["sqmtPrice"] .'" 
+		data-cost-total="'. $val["totalPrice"].' 
+		data-events="" 
+		data-events-name="" 
+		data-user="undefined" 
+		data-date="undefined" 
+		data-fio="undefined" 
+		data-phone="undefined" 
+		data-comment="undefined" 
+		data-special="false" 
+		data-red="false">
+		<span class="section__houseNum section__houseNum-room" >'. 
+		$val["rooms"].'</span>
+		<span class="section__houseNum section__houseNum-number g-hidden" >
+		</span>
+	</td>'; -->
+
+
+
+<script src="/template/general/vendors/jquery/dist/jquery.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('.click-td').click(function (e) {
+		let flat_id=$(this).attr('data-flat-id')
+		let number=$(this).attr('data-num')
+		let complex=$(this).attr('data-complex')
+		let liter=$(this).attr('data-house')
+		let entrance=$(this).attr('data-entrance')
+		let floor=$(this).attr('data-floor')
+		let rooms=$(this).attr('data-rooms')
+		let spaceFull=$(this).attr('data-area-full')
+		let spaceWithoutBalc=$(this).attr('data-area-live')
+		let sqmtPrice=$(this).attr('data-cost-m2')
+		let totalPrice=$(this).attr('data-cost-total')
+		Swal.fire({
+			title: 'Квартира №' + number,
+			html:
+			'<div class="row">'+
+			'<div class="col">'+
+			'	Объект: ЖК "'+complex+'", Дом ' + liter +
+			'</div>'+
+			'</div>'+
+			'<div class="row">'+
+			'	<div class="col">'+
+			'		Подъезд: '+ entrance +', Этаж: , '+ floor +
+			'	</div>'+
+			'</div>'+
+			'<hr>'+
+			'<div class="row">'+
+			'	<div class="col">'+
+			'		Количество комнат: '+ rooms +
+			'	</div>'+
+			'</div>'+
+			'<div class="row">'+
+			'	<div class="col">'+
+			'		Общая площадь: '+ spaceFull +', площадь без балкона: '+ spaceWithoutBalc +
+			'	</div>'+
+			'</div>'+
+			'<hr>'+
+			'<div class="row">'+
+			'	<div class="col">'+
+			'		Цена за квадратный метр: '+ sqmtPrice +', Общая стоимость: '+ totalPrice +
+			'	</div>'+
+			'</div>'+
+			'<div class="row">'+
+			'	<div class="col">'+
+			'		Статус: '+
+			'	</div>'+
+			'</div>',
+			showCancelButton: true,
+			confirmButtonText: `Открыть запись`,
+			cancelButtonText: `Закрыть`,
+			}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				window.location.href = '/flats-form?flat_id='+flat_id;
+			}
+		})
+
+	});
+    
+});
+</script>
+
+<script>
+	$(document).ready(function () {
+    	$('.DoCopyVertical').click(function (e) {
+		let flat_id = $(this).attr('data-flat-id')
+			$.ajax({
+				type: "post",
+				url: "core/view/desktop/Flats/copyFlats.php",
+				data: {
+					flat_id : flat_id,
+				},
+				success: function (response) {
+					Swal.fire({
+						title: response.text,
+					})
+					
+				}
+			});
+		})
+	})
+
+</script>
+
+
+
+
+<!-- <script>
+	document.addEventListener('DOMContentLoaded', function(){
+    const table = document.getElementsByTagName('table');
+    for (let tbl of table) {
+        tbl.addEventListener('click', (event) => {
+            if(event.target.dataset.action === "openAlert"){
+				Swal.fire({
+				})
+			}
+        })
+    }
+})
+</script> -->
+

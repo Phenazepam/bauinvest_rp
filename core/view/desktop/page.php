@@ -273,8 +273,6 @@
     <!-- Custom Theme Scripts -->
     <script src="/template/general/build/js/custom.min.js"></script>
     
-    
-   
     <!-- iCheck -->
     <script src="/template/general/vendors/iCheck/icheck.min.js"></script>
     <!-- Datatables -->
@@ -296,7 +294,9 @@
     <!-- DatePicker -->
     <script src="/template/general/vendors/datepicker/daterangepicker.js"></script>
     
-	
+    <!-- Sweet Alert 2 -->
+    <script src="/template/general/vendors/sweetAlert/sweetalert2.all.min.js"></script>
+    
 	
   </body>
 </html>

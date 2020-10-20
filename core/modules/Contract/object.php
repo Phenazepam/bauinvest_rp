@@ -22,7 +22,7 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 			"params"     => array(
 				"accountingEntity" => "String",
 				"contractNumber" => "Number",
-				"contractDate" => "StringString",
+				"contractDate" => "String",
 				"creationDate" => "String",
 				"registrationDate" => "String",
 				"saleType" => "String",

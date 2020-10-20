@@ -119,10 +119,18 @@ class Controller {
 		    ),
 		    
 		    array(
-		        "title"    => "Форма - Ипотечные банки",
+		        "title"    => "Форма - Форма договоры",
 		        "url"      => "contract-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contract/form.php",
+		        "tag"      => array(),
+			),
+
+		    array(
+		        "title"    => "Форма - Форма просмотр договоров",
+		        "url"      => "contract-form-view",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/contract/form-view.php",
 		        "tag"      => array(),
 			),
 			// Контрагенты
