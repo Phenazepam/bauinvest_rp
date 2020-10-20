@@ -7,8 +7,9 @@
 	use RedCore\promotion\Collection as Promotion;
 	use RedCore\CalculationForm\Collection as CalculationForm;
 	use RedCore\mortgagebank\Collection as MortgageBank;
-	use RedCore\SaleObject\Collection as SaleObject;
 	use RedCore\Facingtypes\Collection as FacingType;
+	use RedCore\Flats\Collection as Flats;
+	use RedCore\Buildings\Collection as Buildings;
 	use RedCore\Users\Collection as Users;
 
 	use RedCore\Contract\Collection as Contract;
@@ -120,16 +121,23 @@
 	}
 
 	//SaleObject
-	SaleObject::setObject();
-	$SaleObject = SaleObject::getList();
+	Flats::setObject();
+	$Flats = Flats::getList();
+
+
+	Buildings::setObject("building");
+	$Buildings = Buildings::getList();
+
 	$SaleObject_list["list"] = array(
 	    "0" => "Не выбран",
 	);
-	foreach($SaleObject as $key => $temp) {
-		$SaleObject_list["list"][$key] = "Дом " . $temp->getFieldSet("saleobject-list")->liter . " квартира " . 
-		$temp->getFieldSet("saleobject-list")->number;
-	}
+	foreach($Flats as $key => $temp) {
+		$t=$temp->getFieldSet("flats-list");
 
+		$SaleObject_list["list"][$t->id] = "ЖК " . $Buildings[$t->id_b]->object->complex . 
+			", Литер " . $Buildings[$t->id_b]->object->liter .
+			", квартира " . $t->number;
+	}
 	//FacingType
 	FacingType::setObject();
 	$FacingType = FacingType::getList();

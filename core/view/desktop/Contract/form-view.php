@@ -9,6 +9,8 @@
 	use RedCore\mortgagebank\Collection as MortgageBank;
 	use RedCore\SaleObject\Collection as SaleObject;
 	use RedCore\Facingtypes\Collection as FacingType;
+	use RedCore\Flats\Collection as Flat;
+	use RedCore\Buildings\Collection as Buildings;
 	use RedCore\Users\Collection as Users;
 
 	use RedCore\Contract\Collection as Contract;
@@ -16,7 +18,46 @@
 	use RedCore\Forms as Forms;
 	use RedCore\Session as Session;
 
-	
+AccountingEntity::setObject();
+$AccountingEntity = AccountingEntity::getList();
+
+SaleType::setObject();
+$SaleType = SaleType::getList();
+
+ContractTypes::setObject();
+$ContractTypes = ContractTypes::getList();
+
+
+ContractStatus::setObject();
+$ContractStatus = ContractStatus::getList();
+
+
+Agency::setObject();
+$Agency = Agency::getList();
+
+
+Promotion::setObject();
+$Promotion = Promotion::getList();
+
+
+CalculationForm::setObject();
+$CalculationForm = CalculationForm::getList();
+
+
+MortgageBank::setObject();
+$MortgageBank = MortgageBank::getList();
+
+
+Flat::setObject();
+$Flat = Flat::getList();
+
+Buildings::setObject("building");
+$Buildings = Buildings::getList();
+
+FacingType::setObject();
+$FacingType = FacingType::getList();
+    
+
 	$html_object = "contract";
 	$lb_params = array(
 		"id" => Request::vars("contract_id"),
@@ -31,9 +72,10 @@
                 </div>
                 <div class="row">
                     <div class="col">
-                        Субъект учета: '. $item->params->accountingEntity .'
+                        Субъект учета: '. $AccountingEntity[$item->params->accountingEntity]->object->title .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
                         Дата договора: '. $item->params->contractDate .'
@@ -49,29 +91,33 @@
                         Дата регистрации договора: '. $item->params->registrationDate .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Типа продажи: '. $item->params->saleType .'
+                        Типа продажи: '.$SaleType[$item->params->saleType]->object->title .'
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        Типа договора: '. $ContractTypes[$item->params->contractTypes]->object->title .'
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
-                        Типа договора: '. $item->params->contractTypes .'
+                        Статус договора: '. $ContractStatus[$item->params->contractStatus]->object->title .'
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        Статус договора: '. $item->params->contractStatus .'
-                    </div>
-                </div>
+                <hr>
                 <div class="row">
                     <div class="col">
                         Стоимость договора: '. $item->params->contractPrice .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Агенства недвижимости: '. $item->params->agency .'
+                        Агенства недвижимости: '. $Agency[$item->params->agency]->object->title .'
                     </div>
                 </div>
                 <div class="row">
@@ -79,41 +125,52 @@
                         Риелторские вознаграждения: '. $item->params->realtorReward .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Акции: '. $item->params->promotion .'
+                        Акции: '. $Promotion[$item->params->promotion]->object->title .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Форма расчета: '. $item->params->calculationForm .'
+                        Форма расчета: '. $CalculationForm[$item->params->calculationForm]->object->title .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Ипотечный банк: '. $item->params->mortgageBank .'
+                        Ипотечный банк: '. $MortgageBank[$item->params->mortgageBank]->object->title .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
                         График платежей: '. $item->params->paymentSchedule .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Объект продажи: '. $item->params->saleObject .'
+                        Объект продажи: '. 
+                        "ЖК ".$Buildings[$Flat[$item->params->saleObject]->object->id]->object->complex .
+                        ", Литер ".$Buildings[$Flat[$item->params->saleObject]->object->id]->object->liter .
+                        ", Квартира ".$Flat[$item->params->saleObject]->object->params->number .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
-                        Вид отделки: '. $item->params->facingType .'
+                        Вид отделки: '. $FacingType[$item->params->facingType]->object->title .'
                     </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
                         Статус работы: '. $item->params->stage_status .'
                     </div>
-                </div>';
+                </div>
+                <hr>';
 
 
 
@@ -124,7 +181,7 @@
             ->add("text", 'text', "html", "contract-form-view", $text)
     
             //->add("stagestatus", "", "hidden",   $html_object . "[params][stagestatus]", htmlspecialchars($item->params->stagestatus), 6, true)
-            ->setSubmit("Сохранить", $disabled)
+            ->setSubmit("Вернуться к списку", $disabled)
             ->parse();	
 
 
