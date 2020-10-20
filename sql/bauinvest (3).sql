@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 20 2020 г., 01:38
+-- Время создания: Окт 21 2020 г., 01:28
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.1.33
 
@@ -261,7 +261,7 @@ CREATE TABLE `bauinvest__flats` (
 
 INSERT INTO `bauinvest__flats` (`id`, `id_b`, `x`, `y`, `params`, `_updated`, `_deleted`) VALUES
 (1, '1', 1, 22, '{\"number\":122,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"4\"}', '2020-10-18 20:22:44', 0),
-(2, '1', 2, 21, '{\"number\":143,\"rooms\":\"2\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-18 23:21:42', 0),
+(2, '1', 2, 21, '{\"number\":143,\"rooms\":\"2\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"2\"}', '2020-10-18 23:21:42', 0),
 (3, '2', 1, 1, '{\"number\":1,\"rooms\":\"3\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-18 23:54:25', 0),
 (4, '3', 6, 16, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-18 23:57:31', 0);
 
@@ -366,7 +366,8 @@ INSERT INTO `bauinvest__log` (`id`, `e_type`, `action`, `message`, `user_id`, `p
 (77, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 12:42:51', 0),
 (78, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:11:39', 0),
 (79, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:21:57', 0),
-(80, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:22:06', 0);
+(80, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:22:06', 0),
+(81, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-20 17:08:07', 0);
 
 -- --------------------------------------------------------
 
@@ -720,7 +721,7 @@ ALTER TABLE `bauinvest__flats`
 -- AUTO_INCREMENT для таблицы `bauinvest__log`
 --
 ALTER TABLE `bauinvest__log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
 
 --
 -- AUTO_INCREMENT для таблицы `bauinvest__mortgagebanks`
