@@ -90,6 +90,7 @@ $items = Contract::getList($where);
                       <thead>
                         <tr>
                           <th>№ п/п</th>
+                          <th>Статус согласования</th>
                           <th>Субъект учета</th>
                           <th>Номер договора</th>
                           <th>Дата договора</th>
@@ -121,12 +122,12 @@ $items = Contract::getList($where);
                         foreach($items as $key => $item):
                           $oFS = $item->getFieldSet("contract-list");
 
-                          /* var_dump($oFS->contractStatus);
-                          var_dump($MortgageBank); */
+                          //var_dump($oFS->stageStatus);
                       ?>
                         <tr>
                           
                           <td><?=$i++?></td>
+                          <td><?=Contract::$stage_status[$oFS->stageStatus]?></td>
                           <td><?=$AccountingEntity[$oFS->accountingEntity]->object->title?></td>
                           <td><?=$oFS->contractNumber?></td>
                           <td><?=date('d.m.Y',strtotime($oFS->contractDate))?></td>
@@ -156,7 +157,7 @@ $items = Contract::getList($where);
                             </button>
                             <div class="dropdown-menu">
                               <a class="dropdown-item" href="/contract-form-view?contract_id=<?=$oFS->id?>">Просмотр</a>
-                              <? if((3 == $role) OR (4 == $role) OR ((2 == $role) AND (3 == $oFS->stage_status)) ) : ?>
+                              <? if((3 == $role) OR (4 == $role) OR ((2 == $role) AND (3 == $oFS->stageStatus)) ) : ?>
                               <a class="dropdown-item" href="/contract-form?contract_id=<?=$oFS->id?>">Редактировать</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/contract-list?action=contract.delete.do&contract[id]=<?=$oFS->id?>">Удалить</a>

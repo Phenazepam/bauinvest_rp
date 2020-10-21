@@ -24,10 +24,15 @@ ObjectStatus::setObject();
 $ObjectStatus = ObjectStatus::getList();
 
 $id_b = Request::vars("building_id");
+
+
+
 Flats::setObject("flat");
 
 $where = Where::Cond()
-    ->add("id_b", "=", $id_b)
+	->add("id_b", "=", $id_b)
+	->add('and')
+	->add("_deleted", "=", "0")
     ->parse();
 
 $items = Flats::getList($where);
@@ -126,7 +131,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                               Действия
                             </button>
                             <div class="dropdown-menu">
-                              <a class="dropdown-item DoCopyVertical" data-flat-id=<?=$oFS->id?> onClick="DoCopyVertical()">Копировать квартиру на весь стояк</a>
+                              <a class="dropdown-item" href="/flats-list?action=flat.copyvertical.do&flat[id]=<?=$oFS->id?>">Копировать квартиру на весь стояк</a>
                               <div class="dropdown-divider"></div>
                               <a class="dropdown-item" href="/flats-form?flat_id=<?=$oFS->id?>">Редактировать</a>
                               <div class="dropdown-divider"></div>
@@ -253,7 +258,7 @@ $(document).ready(function () {
 			confirmButtonText: `Открыть запись`,
 			cancelButtonText: `Закрыть`,
 			}).then((result) => {
-			/* Read more about isConfirmed, isDenied below */
+			
 			if (result.isConfirmed) {
 				window.location.href = '/flats-form?flat_id='+flat_id;
 			}

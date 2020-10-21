@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Окт 21 2020 г., 01:28
+-- Время создания: Окт 21 2020 г., 18:10
 -- Версия сервера: 8.0.19
 -- Версия PHP: 7.1.33
 
@@ -163,8 +163,8 @@ CREATE TABLE `bauinvest__contracts` (
 --
 
 INSERT INTO `bauinvest__contracts` (`id`, `params`, `_updated`, `_deleted`) VALUES
-(1, '{\"accountingEntity\":\"3\",\"contractNumber\":312312,\"contractDate\":\"2020-10-01\",\"creationDate\":\"1970-01-01\",\"registrationDate\":\"2020-10-22\",\"saleType\":\"1\",\"contractTypes\":\"4\",\"contractStatus\":\"2\",\"contractPrice\":30000000,\"rosFinMon\":0,\"NDS\":0,\"agency\":\"1\",\"realtorReward\":0,\"promotion\":\"1\",\"calculationForm\":\"1\",\"mortgageBank\":\"0\",\"paymentSchedule\":\"1234\",\"saleObject\":\"1\",\"facingType\":\"1\",\"stage_status\":0}', '2020-10-17 22:40:05', 0),
-(2, '{\"accountingEntity\":\"1\",\"contractNumber\":0,\"contractDate\":\"2020-10-17\",\"creationDate\":\"1970-01-01\",\"registrationDate\":\"2020-10-28\",\"saleType\":\"1\",\"contractTypes\":\"1\",\"contractStatus\":\"2\",\"contractPrice\":123,\"rosFinMon\":0,\"NDS\":0,\"agency\":\"1\",\"realtorReward\":123,\"promotion\":\"12\",\"calculationForm\":\"7\",\"mortgageBank\":\"1\",\"paymentSchedule\":\"1122\",\"saleObject\":\"1\",\"facingType\":\"2\",\"stage_status\":0}', '2020-10-18 16:04:03', 0);
+(1, '{\"accountingEntity\":\"3\",\"contractNumber\":312312,\"contractDate\":\"2020-10-01\",\"creationDate\":\"\",\"registrationDate\":\"2020-10-22\",\"saleType\":\"1\",\"contractTypes\":\"4\",\"contractStatus\":\"2\",\"contractPrice\":30000000,\"rosFinMon\":0,\"NDS\":0,\"agency\":\"1\",\"realtorReward\":0,\"promotion\":\"1\",\"calculationForm\":\"1\",\"mortgageBank\":\"0\",\"paymentSchedule\":\"1234\",\"saleObject\":\"1\",\"facingType\":\"1\",\"stageStatus\":2}', '2020-10-17 22:40:05', 0),
+(2, '{\"accountingEntity\":\"1\",\"contractNumber\":123,\"contractDate\":\"2020-10-17\",\"creationDate\":\"\",\"registrationDate\":\"2020-10-28\",\"saleType\":\"1\",\"contractTypes\":\"1\",\"contractStatus\":\"2\",\"contractPrice\":123,\"rosFinMon\":0,\"NDS\":0,\"agency\":\"1\",\"realtorReward\":123,\"promotion\":\"12\",\"calculationForm\":\"7\",\"mortgageBank\":\"1\",\"paymentSchedule\":\"112\",\"saleObject\":\"1\",\"facingType\":\"1\",\"stageStatus\":3}', '2020-10-18 16:04:03', 0);
 
 -- --------------------------------------------------------
 
@@ -260,10 +260,25 @@ CREATE TABLE `bauinvest__flats` (
 --
 
 INSERT INTO `bauinvest__flats` (`id`, `id_b`, `x`, `y`, `params`, `_updated`, `_deleted`) VALUES
-(1, '1', 1, 22, '{\"number\":122,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"4\"}', '2020-10-18 20:22:44', 0),
-(2, '1', 2, 21, '{\"number\":143,\"rooms\":\"2\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"2\"}', '2020-10-18 23:21:42', 0),
-(3, '2', 1, 1, '{\"number\":1,\"rooms\":\"3\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-18 23:54:25', 0),
-(4, '3', 6, 16, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-18 23:57:31', 0);
+(1, '1', 1, 22, '{\"number\":122,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"2\"}', '2020-10-18 20:22:44', 0),
+(2, '1', 2, 21, '{\"number\":143,\"rooms\":\"2\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"4\"}', '2020-10-18 23:21:42', 0),
+(3, '2', 1, 1, '{\"number\":1,\"rooms\":\"3\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"2\"}', '2020-10-18 23:54:25', 0),
+(4, '3', 6, 16, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-18 23:57:31', 0),
+(53, '3', 6, 1, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(54, '3', 6, 2, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(55, '3', 6, 3, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(56, '3', 6, 4, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(57, '3', 6, 5, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(58, '3', 6, 6, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(59, '3', 6, 7, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(60, '3', 6, 8, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(61, '3', 6, 9, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(62, '3', 6, 10, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(63, '3', 6, 11, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(64, '3', 6, 12, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(65, '3', 6, 13, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(66, '3', 6, 14, '{\"number\":666,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0),
+(67, '3', 6, 15, '{\"number\":555,\"rooms\":\"1\",\"spaceFull\":44,\"spaceWithoutBalc\":36,\"sqmtPrice\":52000,\"totalPrice\":2700000,\"flatStatus\":\"1\"}', '2020-10-21 15:09:35', 0);
 
 -- --------------------------------------------------------
 
@@ -367,7 +382,15 @@ INSERT INTO `bauinvest__log` (`id`, `e_type`, `action`, `message`, `user_id`, `p
 (78, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:11:39', 0),
 (79, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:21:57', 0),
 (80, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-19 14:22:06', 0),
-(81, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-20 17:08:07', 0);
+(81, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-20 13:30:43', 0),
+(82, 'SECURITY', 'Logout', 'successful', 7, NULL, '2020-10-20 14:28:33', 0),
+(83, 'SECURITY', 'Auth', 'unsuccessful: wrong login or password', 0, NULL, '2020-10-20 14:28:53', 0),
+(84, 'SECURITY', 'Auth', 'successful', 1, NULL, '2020-10-20 14:29:16', 0),
+(85, 'SECURITY', 'Logout', 'successful', 1, NULL, '2020-10-21 06:32:45', 0),
+(86, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-21 06:32:52', 0),
+(87, 'SECURITY', 'Logout', 'successful', 7, NULL, '2020-10-21 11:52:50', 0),
+(88, 'SECURITY', 'Auth', 'successful', 1, NULL, '2020-10-21 11:52:59', 0),
+(89, 'SECURITY', 'Auth', 'successful', 7, NULL, '2020-10-21 12:02:36', 0);
 
 -- --------------------------------------------------------
 
@@ -411,7 +434,7 @@ INSERT INTO `bauinvest__objectstatuses` (`id`, `title`, `_updated`, `_deleted`) 
 (1, 'Свободно к продаже', '2020-10-19 15:13:08', 0),
 (2, 'Бронь', '2020-10-19 15:13:13', 0),
 (3, 'VIP бронь без срока', '2020-10-19 15:13:15', 0),
-(4, 'Продана', '2020-10-20 01:03:31', 0);
+(4, 'Продана', '2020-10-20 12:59:02', 0);
 
 -- --------------------------------------------------------
 
@@ -679,7 +702,7 @@ ALTER TABLE `bauinvest__autos`
 -- AUTO_INCREMENT для таблицы `bauinvest__buildings`
 --
 ALTER TABLE `bauinvest__buildings`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT для таблицы `bauinvest__calculationforms`
@@ -715,13 +738,13 @@ ALTER TABLE `bauinvest__facingtypes`
 -- AUTO_INCREMENT для таблицы `bauinvest__flats`
 --
 ALTER TABLE `bauinvest__flats`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT для таблицы `bauinvest__log`
 --
 ALTER TABLE `bauinvest__log`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT для таблицы `bauinvest__mortgagebanks`

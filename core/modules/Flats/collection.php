@@ -10,6 +10,8 @@ namespace RedCore\Flats;
 
 use \RedCore\Logger\Collection as Logger;
 use \RedCore\Controller as Controller;
+use \RedCore\Flats\Collection as Flats;
+use \RedCore\Buildings\Collection as Buildings;
 use \RedCore\Core as Core;
 use \RedCore\Where as Where;
 use RedCore\Session;
@@ -58,6 +60,56 @@ class Collection extends \RedCore\Base\Collection {
 	    return parent::getList($where);
 	}
 	
+	/**
+	 * @method \RedCore\Base\Collection getList()
+	 *
+	 * @return \RedCore\Users\ObjectBase ObjectBase
+	 */
+	public static function store($params = "") {
+	    return parent::store($params);
+	}
+
+
+	public static function copyvertical($params= "") {
+		//var_dump($params["flat"]);
+	    if(array_key_exists("flat", $params)){
+			$lb_params = array(
+				"id" => $params["flat"]["id"]
+			);
+			
+			if($_tmp = self::loadBy($lb_params)) {
+				//var_dump($_tmp->object->id_b);
+				$lb_params_b = array(
+					"id" => $_tmp->object->id_b,
+				);
+				//var_dump($_tmp->object);
+				Buildings::setObject("building");
+				$Buildings = Buildings::loadBy($lb_params_b);
+				$y = $Buildings->object->params->levels;
+				Flats::setObject("flat");
+				for ($i=1; $i <= $y-1; $i++) { 					
+					$params["flat"] = array(
+						"id_b" =>$_tmp->object->id_b,
+						"x" =>$_tmp->object->x,
+						"y" =>(string)$i,
+						"params"=> array(					
+							"number"=>$_tmp->object->params->number,						
+							"rooms"=>$_tmp->object->params->rooms,						
+							"spaceFull"=>$_tmp->object->params->spaceFull,					
+							"spaceWithoutBalc"=>$_tmp->object->params->spaceWithoutBalc,					
+							"sqmtPrice"=>$_tmp->object->params->sqmtPrice,				
+							"totalPrice"=>$_tmp->object->params->totalPrice,				
+							"flatStatus"=>$_tmp->object->params->flatStatus,
+						
+						)
+					);
+
+					Flats::store($params);
+				}	
+				
+			}		
+		}
+	}
 }
 
 ?>

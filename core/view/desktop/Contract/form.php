@@ -219,6 +219,7 @@
 			
 			->add("", "", "html", "", "<hr>")
 			->add("stageStatus", "Статус согласования", "select", $html_object . "[params][stageStatus]", htmlspecialchars($item->params->stageStatus), 6, true, $stage_statuses)
+			->add("", "", "html", "", "<hr>")
 			->setSubmit("Сохранить", $disabled)
 			->parse();			
 	}
@@ -249,6 +250,7 @@
 			->add("paymentSchedule", "График платежей", "text", $html_object . "[params][paymentSchedule]", htmlspecialchars($item->params->paymentSchedule), 6, true, "", $disabled)
 			->add("saleObject", "Объект продажи", "select",   $html_object . "[params][saleObject]", htmlspecialchars($item->params->saleObject), 6, true, $SaleObject_list, $disabled)
 			->add("facingType", "Вид отделки", "select",   $html_object . "[params][facingType]", htmlspecialchars($item->params->facingType), 6, true, $FacingType_list, $disabled)
+			->add("stageStatus", "Статус согласования", "hidden",   $html_object . "[params][stageStatus]", 1, 6, true)
 
 			->setSubmit("Сохранить", $disabled)
 			->parse();

@@ -105,7 +105,7 @@ class Controller {
 		        "content"  => "desktop/users/form.php",
 				"tag"      => array(),
 				"access"   => array(
-		            "role" => array(2, 3, 4),
+		            "role" => array(3, 4),
 		        ),
 		    ),
 			//Реестр договоров
@@ -851,6 +851,15 @@ class Controller {
 		        "name"   => "flat.delete.do",
 		        "module" => "RedCore\Flats\Collection",
 		        "method" => "delete",
+		        "params" => array(
+		            "flat",
+		        ),
+			),
+
+			array(
+		        "name"   => "flat.copyvertical.do",
+		        "module" => "RedCore\Flats\Collection",
+		        "method" => "copyvertical",
 		        "params" => array(
 		            "flat",
 		        ),

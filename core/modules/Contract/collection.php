@@ -73,15 +73,15 @@ class Collection extends \RedCore\Base\Collection {
 			);
 			
 			if($_tmp = self::loadBy($lb_params)) {
-				$stage_status = $_tmp->object->params->stage_status;
+				$stageStatus = $_tmp->object->params->stageStatus;
 				Users::setObject();
 				$role = Users::getAuthRole();
 
 				switch($role) {
 					case 2:
 
-						if((0 == $stage_status) OR (3 == $stage_status)) {
-							$params["contract"]["params"]["stage_status"] = 1;
+						if((0 == $stageStatus) OR (3 == $stageStatus)) {
+							$params["contract"]["params"]["stageStatus"] = 1;
 						}
 						else {
 							Controller::Redirect('error403');

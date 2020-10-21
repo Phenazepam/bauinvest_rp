@@ -10,9 +10,12 @@ $html_object = "flat";
 $lb_params = array(
 	"id" => Request::vars("flat_id"),
 );
+
 $id_b = Request::vars("building_id");
 Flats::setObject("flat");
+
 $item = Flats::loadBy($lb_params);
+
 $item = $item->object;
 
 if(empty($item->id_b)){
@@ -34,6 +37,10 @@ ObjectStatus::setObject();
 	$rooms = array(
 		"list" => array('Студия', '1 комнатная', '2 комнатная', '3 комнатная', '4 комнатная', '5 комнатная')
 	);
+
+
+
+
 
 $form = Forms::Create()
 	->add("action",   "action",   "hidden", "action", $html_object . ".store.do", 6, false)

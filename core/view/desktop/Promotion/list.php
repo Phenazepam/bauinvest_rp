@@ -45,7 +45,7 @@ $items = promotion::getList($where);
                         
                         foreach($items as $key => $item):
                           $oFS = $item->getFieldSet("promotion-list");
-                          var_dump($oFS);
+                          //var_dump($oFS);
                       ?>
                         <tr>
                           <td><?=$i++?></td>
