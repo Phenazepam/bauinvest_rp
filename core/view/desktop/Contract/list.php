@@ -68,7 +68,7 @@ Contract::setObject("contract");
 $items = Contract::getList($where);
 
 
-var_dump($Flats);
+//var_dump($Flats);
 
 ?>
 
