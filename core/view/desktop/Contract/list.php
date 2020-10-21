@@ -7,7 +7,8 @@
   use RedCore\promotion\Collection as Promotion;
   use RedCore\CalculationForm\Collection as CalculationForm;
   use RedCore\mortgagebank\Collection as MortgageBank;
-  use RedCore\SaleObject\Collection as SaleObject;
+  use RedCore\Flats\Collection as Flats;
+  use RedCore\Buildings\Collection as Buildings;
   use RedCore\Facingtypes\Collection as FacingType;
   use RedCore\Users\Collection as Users;
     
@@ -50,8 +51,11 @@ MortgageBank::setObject();
 $MortgageBank = MortgageBank::getList();
 
 
-SaleObject::setObject();
-$SaleObject = SaleObject::getList();
+Flats::setObject("flat");
+$Flats = Flats::getList();
+
+Buildings::setObject("building");
+$Buildings = Buildings::getList();
 
 
 FacingType::setObject();
@@ -62,6 +66,10 @@ $where = Where::Cond()
     ->parse();
 Contract::setObject("contract");
 $items = Contract::getList($where);
+
+
+var_dump($Flats);
+
 ?>
 
 <div class="row">
@@ -135,7 +143,9 @@ $items = Contract::getList($where);
                           <td><?=$CalculationForm[$oFS->calculationForm]->object->title?></td>
                           <td><?=$MortgageBank[$oFS->mortgageBank]->object->title?></td>
                           <td><?=$oFS->paymentSchedule?></td>
-                          <td><?="Дом ".$SaleObject[$oFS->saleObject]->object->params->liter . " квартира ". $SaleObject[$oFS->saleObject]->object->params->number?></td>
+                          <td><?="ЖК ".$Buildings[$Flats[$oFS->saleObject]->object->id]->object->complex .
+                                ", Литер ".$Buildings[$Flats[$oFS->saleObject]->object->id]->object->liter .
+                                ", Квартира ".$Flats[$oFS->saleObject]->object->params->number?></td>
                           <td><?=$FacingType[$oFS->facingType]->object->title?></td>
 
                           <td>

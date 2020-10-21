@@ -17,6 +17,7 @@
 	use RedCore\Forms as Forms;
 	use RedCore\Session as Session;
 
+
 	
 	$html_object = "contract";
 	$lb_params = array(
@@ -184,36 +185,74 @@
 	/* $item->params->creationDate = (empty($item->params->creationDate)?date('Y-m-d'):date('Y-m-d', strtotime($item->params->creationDate)));
 	var_dump($item->params->creationDate); */
 
-	$form = Forms::Create()
-		->add("action",   "action",   "hidden", "action", $html_object . ".store.do", 6, false)
-		->add("redirect", "redirect", "hidden", "redirect", "contract-list", 6, false)
-		->add("id", "Id", "hidden", $html_object . "[id]",htmlspecialchars($item->id), 6, false)
+	$stage_statuses = array(
+		"list" => Contract::$stage_status,
+	);
+	Users::setObject("user");
+	if((3 == Users::getAuthRole()) OR (4 == Users::getAuthRole())){
+		$form = Forms::Create()
+			->add("action",   "action",   "hidden", "action", $html_object . ".store.do", 6, false)
+			->add("redirect", "redirect", "hidden", "redirect", "contract-list", 6, false)
+			->add("id", "Id", "hidden", $html_object . "[id]",htmlspecialchars($item->id), 6, false)
 
-		->add("accountingEntity", "Субъект учета", "select",   $html_object . "[params][accountingEntity]", htmlspecialchars($item->params->accountingEntity), 6, true, $AccountingEntity_list, $disabled)
-		->add("contractNumber", "Номер договора", "text", $html_object . "[params][contractNumber]", htmlspecialchars($item->params->contractNumber), 6, true, "", $disabled)
-		->add("contractDate", "Дата договора", "date", $html_object . "[params][contractDate]", htmlspecialchars($item->params->contractDate), 6, true, "", $disabled)
-		->add("creationDate", "Дата создания договора", "date", $html_object . "[params][creationDate]", htmlspecialchars($item->params->creationDate), 6, true, "", "disabled")
-		->add("registrationDate", "Дата регистрации договора", "date", $html_object . "[params][registrationDate]", htmlspecialchars($item->params->registrationDate), 6, true, "", $disabled)
-		->add("saleType", "Тип продажи", "select",   $html_object . "[params][saleType]", htmlspecialchars($item->params->saleType), 6, true, $SaleType_list, $disabled)
-		->add("contractTypes", "Тип договора", "select",   $html_object . "[params][contractTypes]", htmlspecialchars($item->params->contractTypes), 6, true, $ContractTypes_list, $disabled)
-		->add("contractStatus", "Статус договора", "select",   $html_object . "[params][contractStatus]", htmlspecialchars($item->params->contractStatus), 6, true, $ContractStatus_list, $disabled)
-		->add("contractPrice", "Сумма договора", "text", $html_object . "[params][contractPrice]", htmlspecialchars($item->params->contractPrice), 6, true, "", $disabled)
-		
-		//->add("rosFinMon", "РосФинМониторинг", "checkbox", $html_object . "[params][rosFinMon]", htmlspecialchars($item->params->rosFinMon), 6, true)
-		//->add("NDS", "НДС", "checkbox", $html_object . "[params][NDS]", htmlspecialchars($item->params->NDS), 6, true) */
+			->add("accountingEntity", "Субъект учета", "select",   $html_object . "[params][accountingEntity]", htmlspecialchars($item->params->accountingEntity), 6, true, $AccountingEntity_list, $disabled)
+			->add("contractNumber", "Номер договора", "text", $html_object . "[params][contractNumber]", htmlspecialchars($item->params->contractNumber), 6, true, "", $disabled)
+			->add("contractDate", "Дата договора", "date", $html_object . "[params][contractDate]", htmlspecialchars($item->params->contractDate), 6, true, "", $disabled)
+			->add("creationDate", "Дата создания договора", "date", $html_object . "[params][creationDate]", htmlspecialchars($item->params->creationDate), 6, true, "", "disabled")
+			->add("registrationDate", "Дата регистрации договора", "date", $html_object . "[params][registrationDate]", htmlspecialchars($item->params->registrationDate), 6, true, "", $disabled)
+			->add("saleType", "Тип продажи", "select",   $html_object . "[params][saleType]", htmlspecialchars($item->params->saleType), 6, true, $SaleType_list, $disabled)
+			->add("contractTypes", "Тип договора", "select",   $html_object . "[params][contractTypes]", htmlspecialchars($item->params->contractTypes), 6, true, $ContractTypes_list, $disabled)
+			->add("contractStatus", "Статус договора", "select",   $html_object . "[params][contractStatus]", htmlspecialchars($item->params->contractStatus), 6, true, $ContractStatus_list, $disabled)
+			->add("contractPrice", "Сумма договора", "text", $html_object . "[params][contractPrice]", htmlspecialchars($item->params->contractPrice), 6, true, "", $disabled)
+			
+			//->add("rosFinMon", "РосФинМониторинг", "checkbox", $html_object . "[params][rosFinMon]", htmlspecialchars($item->params->rosFinMon), 6, true)
+			//->add("NDS", "НДС", "checkbox", $html_object . "[params][NDS]", htmlspecialchars($item->params->NDS), 6, true) */
 
-		->add("agency", "Агенства недвижимости", "select",   $html_object . "[params][agency]", htmlspecialchars($item->params->agency), 6, true, $Agency_list, $disabled)
-		->add("realtorReward", "Риелторские вознаграждения", "text", $html_object . "[params][realtorReward]", htmlspecialchars($item->params->realtorReward), 6, true, "", $disabled)
-		->add("promotion", "Акции", "select",   $html_object . "[params][promotion]", htmlspecialchars($item->params->promotion), 6, true, $Promotion_list, $disabled)
-		->add("calculationForm", "Форма расчета", "select",   $html_object . "[params][calculationForm]", htmlspecialchars($item->params->calculationForm), 6, true, $CalculationForm_list, $disabled)
-		->add("mortgageBank", "Ипотечный банк", "select",   $html_object . "[params][mortgageBank]", htmlspecialchars($item->params->mortgageBank), 6, true, $MortgageBank_list, $disabled)
-		->add("paymentSchedule", "График платежей", "text", $html_object . "[params][paymentSchedule]", htmlspecialchars($item->params->paymentSchedule), 6, true, "", $disabled)
-		->add("saleObject", "Объект продажи", "select",   $html_object . "[params][saleObject]", htmlspecialchars($item->params->saleObject), 6, true, $SaleObject_list, $disabled)
-		->add("facingType", "Вид отделки", "select",   $html_object . "[params][facingType]", htmlspecialchars($item->params->facingType), 6, true, $FacingType_list, $disabled)
-		
-		//->add("stagestatus", "", "hidden",   $html_object . "[params][stagestatus]", htmlspecialchars($item->params->stagestatus), 6, true)
-		->setSubmit("Сохранить", $disabled)
-		->parse();	
+			->add("agency", "Агенства недвижимости", "select",   $html_object . "[params][agency]", htmlspecialchars($item->params->agency), 6, true, $Agency_list, $disabled)
+			->add("realtorReward", "Риелторские вознаграждения", "text", $html_object . "[params][realtorReward]", htmlspecialchars($item->params->realtorReward), 6, true, "", $disabled)
+			->add("promotion", "Акции", "select",   $html_object . "[params][promotion]", htmlspecialchars($item->params->promotion), 6, true, $Promotion_list, $disabled)
+			->add("calculationForm", "Форма расчета", "select",   $html_object . "[params][calculationForm]", htmlspecialchars($item->params->calculationForm), 6, true, $CalculationForm_list, $disabled)
+			->add("mortgageBank", "Ипотечный банк", "select",   $html_object . "[params][mortgageBank]", htmlspecialchars($item->params->mortgageBank), 6, true, $MortgageBank_list, $disabled)
+			->add("paymentSchedule", "График платежей", "text", $html_object . "[params][paymentSchedule]", htmlspecialchars($item->params->paymentSchedule), 6, true, "", $disabled)
+			->add("saleObject", "Объект продажи", "select",   $html_object . "[params][saleObject]", htmlspecialchars($item->params->saleObject), 6, true, $SaleObject_list, $disabled)
+			->add("facingType", "Вид отделки", "select",   $html_object . "[params][facingType]", htmlspecialchars($item->params->facingType), 6, true, $FacingType_list, $disabled)
+			
+			->add("", "", "html", "", "<hr>")
+			->add("stageStatus", "Статус согласования", "select", $html_object . "[params][stageStatus]", htmlspecialchars($item->params->stageStatus), 6, true, $stage_statuses)
+			->setSubmit("Сохранить", $disabled)
+			->parse();			
+	}
+	else{
+		$form = Forms::Create()
+			->add("action",   "action",   "hidden", "action", $html_object . ".store.do", 6, false)
+			->add("redirect", "redirect", "hidden", "redirect", "contract-list", 6, false)
+			->add("id", "Id", "hidden", $html_object . "[id]",htmlspecialchars($item->id), 6, false)
+
+			->add("accountingEntity", "Субъект учета", "select",   $html_object . "[params][accountingEntity]", htmlspecialchars($item->params->accountingEntity), 6, true, $AccountingEntity_list, $disabled)
+			->add("contractNumber", "Номер договора", "text", $html_object . "[params][contractNumber]", htmlspecialchars($item->params->contractNumber), 6, true, "", $disabled)
+			->add("contractDate", "Дата договора", "date", $html_object . "[params][contractDate]", htmlspecialchars($item->params->contractDate), 6, true, "", $disabled)
+			->add("creationDate", "Дата создания договора", "date", $html_object . "[params][creationDate]", htmlspecialchars($item->params->creationDate), 6, true, "", "disabled")
+			->add("registrationDate", "Дата регистрации договора", "date", $html_object . "[params][registrationDate]", htmlspecialchars($item->params->registrationDate), 6, true, "", $disabled)
+			->add("saleType", "Тип продажи", "select",   $html_object . "[params][saleType]", htmlspecialchars($item->params->saleType), 6, true, $SaleType_list, $disabled)
+			->add("contractTypes", "Тип договора", "select",   $html_object . "[params][contractTypes]", htmlspecialchars($item->params->contractTypes), 6, true, $ContractTypes_list, $disabled)
+			->add("contractStatus", "Статус договора", "select",   $html_object . "[params][contractStatus]", htmlspecialchars($item->params->contractStatus), 6, true, $ContractStatus_list, $disabled)
+			->add("contractPrice", "Сумма договора", "text", $html_object . "[params][contractPrice]", htmlspecialchars($item->params->contractPrice), 6, true, "", $disabled)
+			
+			//->add("rosFinMon", "РосФинМониторинг", "checkbox", $html_object . "[params][rosFinMon]", htmlspecialchars($item->params->rosFinMon), 6, true)
+			//->add("NDS", "НДС", "checkbox", $html_object . "[params][NDS]", htmlspecialchars($item->params->NDS), 6, true) */
+
+			->add("agency", "Агенства недвижимости", "select",   $html_object . "[params][agency]", htmlspecialchars($item->params->agency), 6, true, $Agency_list, $disabled)
+			->add("realtorReward", "Риелторские вознаграждения", "text", $html_object . "[params][realtorReward]", htmlspecialchars($item->params->realtorReward), 6, true, "", $disabled)
+			->add("promotion", "Акции", "select",   $html_object . "[params][promotion]", htmlspecialchars($item->params->promotion), 6, true, $Promotion_list, $disabled)
+			->add("calculationForm", "Форма расчета", "select",   $html_object . "[params][calculationForm]", htmlspecialchars($item->params->calculationForm), 6, true, $CalculationForm_list, $disabled)
+			->add("mortgageBank", "Ипотечный банк", "select",   $html_object . "[params][mortgageBank]", htmlspecialchars($item->params->mortgageBank), 6, true, $MortgageBank_list, $disabled)
+			->add("paymentSchedule", "График платежей", "text", $html_object . "[params][paymentSchedule]", htmlspecialchars($item->params->paymentSchedule), 6, true, "", $disabled)
+			->add("saleObject", "Объект продажи", "select",   $html_object . "[params][saleObject]", htmlspecialchars($item->params->saleObject), 6, true, $SaleObject_list, $disabled)
+			->add("facingType", "Вид отделки", "select",   $html_object . "[params][facingType]", htmlspecialchars($item->params->facingType), 6, true, $FacingType_list, $disabled)
+
+			->setSubmit("Сохранить", $disabled)
+			->parse();
+	}
 ?>
 
 

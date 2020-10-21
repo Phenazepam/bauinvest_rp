@@ -16,6 +16,8 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 	
 	public function __construct() {
 		$this->table = "contracts";
+
+		
 		
 		$this->properties = array(
 			"id"         => "Number",
@@ -39,7 +41,7 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 				"paymentSchedule" => "String",
 				"saleObject" => "String",
 				"facingType" => "String",
-				"stage_status" => "Number",
+				"stageStatus" => "Number",
 			),
 		    "_deleted" => "Number",
 		);
@@ -71,7 +73,7 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 	               'paymentSchedule' => $this->object->params->paymentSchedule,
 	               'saleObject' => $this->object->params->saleObject,
 				   'facingType' => $this->object->params->facingType,
-				   'stage_status' => $this->object->params->stage_status,
+				   'stageStatus' => $this->object->params->stageStatus,
 	            );
 	            break;
 	        default:

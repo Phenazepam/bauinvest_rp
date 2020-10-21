@@ -70,6 +70,7 @@ $FacingType = FacingType::getList();
                     <h3>Договор № '.$item->params->contractNumber.'</h3>
                 </div>
                 </div>
+                <hr>
                 <div class="row">
                     <div class="col">
                         Субъект учета: '. $AccountingEntity[$item->params->accountingEntity]->object->title .'

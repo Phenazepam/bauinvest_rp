@@ -21,6 +21,15 @@ require_once('object.php');
 
 class Collection extends \RedCore\Base\Collection { 
 	
+
+	public static $stage_status = array(
+
+		"0" => "Новый договор",
+		"1" => "Отправлен на подпись",
+		"2" => "Подписан",
+		"3" => "Возврат на редактирование",
+
+	);
 	
 	/**
 	 * @method \RedCore\Base\Collection setObject()
