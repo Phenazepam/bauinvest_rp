@@ -115,7 +115,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contract/list.php",
 		        "tag"      => array("top", "reestr"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -123,7 +126,10 @@ class Controller {
 		        "url"      => "contract-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contract/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 
 		    array(
@@ -131,7 +137,10 @@ class Controller {
 		        "url"      => "contract-form-view",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contract/form-view.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 			// Контрагенты
 		    array(
@@ -140,7 +149,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/partner/list.php",
 		        "tag"      => array("top", "reestr"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -148,7 +160,10 @@ class Controller {
 		        "url"      => "partner-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/partner/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 			/* //temp
 			array(
@@ -167,14 +182,20 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/Buildings/list.php",
 		        "tag"      => array("top", "reestr"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    array(
 		        "title"    => "Форма - Объекты продажи",
 		        "url"      => "buildings-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/Buildings/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 			array(
 		        "title"    => "Квартиры",
@@ -182,14 +203,20 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/Flats/list.php",
 		        "tag"      => array(),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    array(
 		        "title"    => "Форма - Объекты продажи",
 		        "url"      => "flats-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/Flats/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 
 			/* array(
@@ -216,7 +243,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/facingtypes/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -224,7 +254,10 @@ class Controller {
 		        "url"      => "facingtype-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/facingtypes/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 
 			//Справочник типов договора
@@ -234,7 +267,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contracttypes/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -242,7 +278,10 @@ class Controller {
 		        "url"      => "contracttype-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contracttypes/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 
 			//Справочник субъектов учета
@@ -252,7 +291,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/accountingentity/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -260,7 +302,10 @@ class Controller {
 		        "url"      => "accountingentity-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/accountingentity/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 
 			//Справочник статусов договора
@@ -270,7 +315,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contractstatus/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -278,7 +326,10 @@ class Controller {
 		        "url"      => "contractstatus-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/contractstatus/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 
 			//Справочник акций
@@ -288,7 +339,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/promotion/list.php",
 		        "tag"      => array("top", "reestr"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -296,7 +350,10 @@ class Controller {
 		        "url"      => "promotion-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/promotion/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 			//Справочник агентства
 			array(
@@ -305,7 +362,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/agency/list.php",
 		        "tag"      => array("top", "reestr"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -313,7 +373,10 @@ class Controller {
 		        "url"      => "agency-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/agency/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 			//Справочник форм расчета
 			array(
@@ -322,7 +385,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/calculationform/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -330,7 +396,10 @@ class Controller {
 		        "url"      => "calculationform-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/calculationform/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 			//Справочник типов продажи
 			array(
@@ -339,7 +408,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/saletype/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -347,7 +419,10 @@ class Controller {
 		        "url"      => "saletype-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/saletype/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 			//Справочник статусов объектов
 			array(
@@ -356,7 +431,10 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/ObjectStatus/list.php",
 		        "tag"      => array("top", "sprav"),
-		        "default"  => false,
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -364,7 +442,10 @@ class Controller {
 		        "url"      => "objectstatus-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/ObjectStatus/form.php",
-		        "tag"      => array(),
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
 			),
 
 
@@ -375,7 +456,9 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/mortgagebank/list.php",
 		        "tag"      => array("top", "reestr"),
-		        "default"  => false,
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
 		    array(
@@ -383,7 +466,9 @@ class Controller {
 		        "url"      => "mortgagebank-form",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/mortgagebank/form.php",
-		        "tag"      => array(),
+		        "tag"      => array(),"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 			),
 
 			
