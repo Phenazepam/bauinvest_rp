@@ -148,7 +148,7 @@ class ChessTower{
                                 data-special="false" 
                                 data-red="false">
                                 <span class="section__houseNum section__houseNum-room" >'. 
-                                $val["rooms"].'</span>
+                                $this->rooms[$val["rooms"]].'</span>
                                 <span class="section__houseNum section__houseNum-number g-hidden" >
                                 </span>
                                 </td>';

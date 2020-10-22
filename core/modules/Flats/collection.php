@@ -87,26 +87,52 @@ class Collection extends \RedCore\Base\Collection {
 				$Buildings = Buildings::loadBy($lb_params_b);
 				$y = $Buildings->object->params->levels;
 				Flats::setObject("flat");
-				for ($i=1; $i <= $y-1; $i++) { 					
-					$params["flat"] = array(
-						"id_b" =>$_tmp->object->id_b,
-						"x" =>$_tmp->object->x,
-						"y" =>(string)$i,
-						"params"=> array(					
-							"number"=>$_tmp->object->params->number,						
-							"rooms"=>$_tmp->object->params->rooms,						
-							"spaceFull"=>$_tmp->object->params->spaceFull,					
-							"spaceWithoutBalc"=>$_tmp->object->params->spaceWithoutBalc,					
-							"sqmtPrice"=>$_tmp->object->params->sqmtPrice,				
-							"totalPrice"=>$_tmp->object->params->totalPrice,				
-							"flatStatus"=>$_tmp->object->params->flatStatus,
-						
-						)
-					);
-
-					Flats::store($params);
-				}	
 				
+				$id_b = Session::get("filter_building_id");
+
+				$where = Where::Cond()
+					->add("id_b", "=", $id_b)
+					->add('and')
+					->add("_deleted", "=", "0")
+					->parse();
+				$flats = Flats::getList($where);
+				$existingFlats = array();
+				foreach($flats as $key => $flat) {
+					//print_r($flat);
+					$existingFlats[$flat->object->id]["x"] = $flat->object->x;
+					$existingFlats[$flat->object->id]["y"] = $flat->object->y;
+				}
+				$count=0;
+				//print_r($existingFlats);
+				for ($i=1; $i <= $y; $i++) {
+					$existance = false;
+					
+					foreach($existingFlats as $ef){
+						if($ef["y"] == $i){
+							$existance = true;
+						break;
+						}
+					}
+						
+					if(!$existance){
+						$params["flat"] = array(
+							"id_b" =>$_tmp->object->id_b,
+							"x" =>$_tmp->object->x,
+							"y" =>(string)$i,
+							"params"=> array(					
+								"number"=>$_tmp->object->params->number,						
+								"rooms"=>$_tmp->object->params->rooms,						
+								"spaceFull"=>$_tmp->object->params->spaceFull,					
+								"spaceWithoutBalc"=>$_tmp->object->params->spaceWithoutBalc,					
+								"sqmtPrice"=>$_tmp->object->params->sqmtPrice,				
+								"totalPrice"=>$_tmp->object->params->totalPrice,				
+								"flatStatus"=>$_tmp->object->params->flatStatus,								
+							)
+						);
+						Flats::store($params);
+					}
+									
+				}
 			}		
 		}
 	}

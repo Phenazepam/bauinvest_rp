@@ -82,3 +82,17 @@ $form = Forms::Create()
 		</div>
 	</div>
 </div>
+
+<style type="text/css">
+    .icon {
+        height: 36px;
+        width:  36px;
+        background-repeat: no-repeat;
+        padding-top: 1px;
+        padding-bottom: 1px;
+        background-position: right;
+    }
+
+
+</style>
+

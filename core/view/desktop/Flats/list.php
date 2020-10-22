@@ -6,15 +6,21 @@ use \RedCore\Flats\ChessTower as ChessTower;
 use RedCore\Request as Request;
 use \RedCore\Where as Where;
 use \RedCore\Flats\CopyFlats as Copy;
+use \RedCore\Session as Session;
+
+
+Session::bind("building_id", "filter_building_id", -1);
+$id_b = Session::get("filter_building_id");
+
 
 require('copyFlats.php');
 $ChessTower = require('list.chessTower.php');
 
 $lb_params = array(
-	"id_b" => Request::vars("building_id"),
+	"id_b" => $id_b,
 );
 $lb_params_b = array(
-	"id" => Request::vars("building_id"),
+	"id" => $id_b,
 );
 
 Buildings::setObject("building");
@@ -22,10 +28,6 @@ $temp = Buildings::loadBy($lb_params_b);
 
 ObjectStatus::setObject();
 $ObjectStatus = ObjectStatus::getList();
-
-$id_b = Request::vars("building_id");
-
-
 
 Flats::setObject("flat");
 
@@ -158,51 +160,6 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
     <?=$tower?>
 </div>
 </div>
-
-
-
-
-	<!-- '<td 
-		class="section__houseTd
-		click-td                                
-		section__houseTd-'. $this->flat_status[$val["flatStatus"]] .' 
-		section__houseTd-vkbn-'. $this->flat_status[$val["flatStatus"]] .' 
-		section__houseTd-special-false 
-		section__houseTd-red-false"
-		data-action="openAlert" 
-		data-complex="'. $val["complex"] .'" 
-		data-house="'. $val["liter"] .'" 
-		data-section="" 
-		data-entrance="'. $val["entrance"] .'" 
-		data-floor="'. $val["y"] .'" 
-		data-rooms="'. $this->rooms[$val["rooms"]] .'" 
-		data-area-full="'. $val["spaceFull"] .'" 
-		data-area-live="'. $val["spaceWithoutBalc"] .'" 
-		data-num="'.  $val["number"] .'" "="" 
-		data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" 
-		data-status="sold" 
-		data-status-name="продана" 
-		data-status-vkbn="sold" 
-		data-status-vkbn-name="продана" 
-		data-book-time="" 
-		data-cost-m2="'. $val["sqmtPrice"] .'" 
-		data-cost-total="'. $val["totalPrice"].' 
-		data-events="" 
-		data-events-name="" 
-		data-user="undefined" 
-		data-date="undefined" 
-		data-fio="undefined" 
-		data-phone="undefined" 
-		data-comment="undefined" 
-		data-special="false" 
-		data-red="false">
-		<span class="section__houseNum section__houseNum-room" >'. 
-		$val["rooms"].'</span>
-		<span class="section__houseNum section__houseNum-number g-hidden" >
-		</span>
-	</td>'; -->
-
-
 
 <script src="/template/general/vendors/jquery/dist/jquery.min.js"></script>
 <script>
