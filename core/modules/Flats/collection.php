@@ -136,6 +136,22 @@ class Collection extends \RedCore\Base\Collection {
 			}		
 		}
 	}
+
+
+	public static function Report(){
+		$file = "flats_report.xls";
+		
+		header('Content-Description: File Transfer');
+		header('Content-Type: application/octet-stream');
+		header('Content-Disposition: attachment; filename=' . basename($file));
+		header('Content-Transfer-Encoding: binary');
+		header('Expires: 0');
+		header('Cache-Control: must-revalidate');
+		header('Pragma: public');
+
+		require_once('flats.report.php');
+	}
+
 }
 
 ?>

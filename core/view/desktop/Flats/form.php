@@ -39,6 +39,8 @@ ObjectStatus::setObject();
 	);
 
 
+	//$img = require_once('flat_images.php');
+	
 
 
 
@@ -56,6 +58,8 @@ $form = Forms::Create()
 	->add("spaceWithoutBalc", "Площадь без балкона", "text", $html_object . "[params][spaceWithoutBalc]", htmlspecialchars($item->params->spaceWithoutBalc), 6, true)
 	->add("sqmtPrice", "Цена за кв.м.", "text", $html_object . "[params][sqmtPrice]", htmlspecialchars($item->params->sqmtPrice), 6, true)
 	->add("totalPrice", "Полная стоимость", "text", $html_object . "[params][totalPrice]", htmlspecialchars($item->params->totalPrice), 6, true)
+	//->add("flanPlan", "План квартиры", "html", $html_object . "[params][totalPrice]", require_once('flat_images.php'), 6, true)
+	
 	->add("flatStatus", "Статус квартиры", "select", $html_object . "[params][flatStatus]", htmlspecialchars($item->params->flatStatus), 6, true, $ObjectStatus_list)
 	
 	->parse();
@@ -82,17 +86,3 @@ $form = Forms::Create()
 		</div>
 	</div>
 </div>
-
-<style type="text/css">
-    .icon {
-        height: 36px;
-        width:  36px;
-        background-repeat: no-repeat;
-        padding-top: 1px;
-        padding-bottom: 1px;
-        background-position: right;
-    }
-
-
-</style>
-

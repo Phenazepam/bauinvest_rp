@@ -13,7 +13,6 @@ Session::bind("building_id", "filter_building_id", -1);
 $id_b = Session::get("filter_building_id");
 
 
-require('copyFlats.php');
 $ChessTower = require('list.chessTower.php');
 
 $lb_params = array(
@@ -93,6 +92,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                 <div class="card-box table-responsive">
         
         <a class="btn btn-primary" href="/flats-form?building_id=<?=$id_b?>">Добавить <i class="fa fa-plus"></i></a>
+        <a class="btn btn-primary" href="/flats-list?action=flats.report.do">Сформировать отчет <i class="fa text-left"></i></a>
 		<table id="datatable" class="table table-striped table-bordered" style="width:100%">
                       <thead>
                         <tr>

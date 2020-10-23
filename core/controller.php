@@ -949,6 +949,14 @@ class Controller {
 		            "flat",
 		        ),
 			),
+			array(
+		        "name"   => "flats.report.do",
+		        "module" => "RedCore\Flats\Collection",
+		        "method" => "Report",
+		        "params" => array(
+		            "flat",
+		        ),
+			),
 
 			/*array(
 				"name"   => "agent.store.do",
