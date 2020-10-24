@@ -30,6 +30,7 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 				"sqmtPrice" => "Number",
 				"totalPrice" => "Number",
 				"flatStatus" => "String",
+				"img" => "String",
 			),
 		    "_deleted" => "Number",
 		);

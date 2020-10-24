@@ -15,6 +15,9 @@ class ChessTower{
     private $flat_status = array(
 		'', 'free', 'book', 'book', 'sold',
     );
+    private $flat_status_name = array(
+		'', 'свободна', 'бронь', 'бронь', 'продана',
+    );
     
 
     public static function Create($cols, $rows, $flats=array()) {
@@ -129,12 +132,12 @@ class ChessTower{
                                 data-rooms="'. $this->rooms[$val["rooms"]] .'" 
                                 data-area-full="'. $val["spaceFull"] .'" 
                                 data-area-live="'. $val["spaceWithoutBalc"] .'" 
-                                data-num="'.  $val["number"] .'" "="" 
-                                data-plan-img="/base/img/plans/pochta18/1_16-22_2_64,5.png" 
+                                data-num="'.  $val["number"] .'" 
+                                data-plan-img="'. $val["img"] .'" 
                                 data-status="sold" 
-                                data-status-name="продана" 
+                                data-status-name="'. $this->flat_status_name[$val["flatStatus"]] .'" 
                                 data-status-vkbn="sold" 
-                                data-status-vkbn-name="продана" 
+                                data-status-vkbn-name="" 
                                 data-book-time="" 
                                 data-cost-m2="'. $val["sqmtPrice"] .'" 
                                 data-cost-total="'. $val["totalPrice"].'" 

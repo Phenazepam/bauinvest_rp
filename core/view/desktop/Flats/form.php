@@ -4,7 +4,9 @@ use \RedCore\Flats\Collection as Flats;
 use \RedCore\ObjectStatus\Collection as ObjectStatus;
 use RedCore\Request as Request;
 use RedCore\Forms as Forms;
+use RedCore\Flats\FlatImages as FlatImages;
 
+require_once('flat.images.php');
 $html_object = "flat";
 
 $lb_params = array(
@@ -39,7 +41,7 @@ ObjectStatus::setObject();
 	);
 
 
-	//$img = require_once('flat_images.php');
+	$img = FlatImages::Print();
 	
 
 
@@ -58,9 +60,9 @@ $form = Forms::Create()
 	->add("spaceWithoutBalc", "Площадь без балкона", "text", $html_object . "[params][spaceWithoutBalc]", htmlspecialchars($item->params->spaceWithoutBalc), 6, true)
 	->add("sqmtPrice", "Цена за кв.м.", "text", $html_object . "[params][sqmtPrice]", htmlspecialchars($item->params->sqmtPrice), 6, true)
 	->add("totalPrice", "Полная стоимость", "text", $html_object . "[params][totalPrice]", htmlspecialchars($item->params->totalPrice), 6, true)
-	//->add("flanPlan", "План квартиры", "html", $html_object . "[params][totalPrice]", require_once('flat_images.php'), 6, true)
-	
 	->add("flatStatus", "Статус квартиры", "select", $html_object . "[params][flatStatus]", htmlspecialchars($item->params->flatStatus), 6, true, $ObjectStatus_list)
+	
+	->add("flanPlan", "План квартиры", "html", $html_object . "[params][img]", $img, 6, true)
 	
 	->parse();
 ?>

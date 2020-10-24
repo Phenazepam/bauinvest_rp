@@ -64,6 +64,7 @@ foreach($items as $item){
 	"complex" => $temp->object->complex,
 	"liter" => $temp->object->liter,
 	"entrance" => $temp->object->entrance,
+	"img" => $item->object->params->img,
   );
 } 
 //var_dump($flats);
@@ -176,40 +177,52 @@ $(document).ready(function () {
 		let spaceWithoutBalc=$(this).attr('data-area-live')
 		let sqmtPrice=$(this).attr('data-cost-m2')
 		let totalPrice=$(this).attr('data-cost-total')
+		let img=$(this).attr('data-plan-img')
+		let statusName=$(this).attr('data-status-name')
 		Swal.fire({
+			width: '70%',
 			title: 'Квартира №' + number,
 			html:
-			'<div class="row">'+
-			'<div class="col">'+
-			'	Объект: ЖК "'+complex+'", Дом ' + liter +
-			'</div>'+
-			'</div>'+
-			'<div class="row">'+
-			'	<div class="col">'+
-			'		Подъезд: '+ entrance +', Этаж: , '+ floor +
-			'	</div>'+
-			'</div>'+
 			'<hr>'+
 			'<div class="row">'+
-			'	<div class="col">'+
-			'		Количество комнат: '+ rooms +
-			'	</div>'+
-			'</div>'+
-			'<div class="row">'+
-			'	<div class="col">'+
-			'		Общая площадь: '+ spaceFull +', площадь без балкона: '+ spaceWithoutBalc +
-			'	</div>'+
-			'</div>'+
-			'<hr>'+
-			'<div class="row">'+
-			'	<div class="col">'+
-			'		Цена за квадратный метр: '+ sqmtPrice +', Общая стоимость: '+ totalPrice +
-			'	</div>'+
-			'</div>'+
-			'<div class="row">'+
-			'	<div class="col">'+
-			'		Статус: '+
-			'	</div>'+
+				'<div class="col">'+
+				'	<img src="/images/flat_plans/'+img+'" width="300" height="400" alt="">' +
+				'</div>'+
+				'<div class="col">'+
+					'<div class="row">'+
+					'	<div class="col">'+
+					'		Объект: ЖК "'+complex+'", Дом ' + liter +
+					'	</div>'+
+					'</div>'+
+					'<div class="row">'+
+					'	<div class="col">'+
+					'		Подъезд: '+ entrance +', Этаж: '+ floor +
+					'	</div>'+
+					'</div>'+
+					'<hr>'+
+					'<div class="row">'+
+					'	<div class="col">'+
+					'		Количество комнат: '+ rooms +
+					'	</div>'+
+					'</div>'+
+					'<div class="row">'+
+					'	<div class="col">'+
+					'		Общая площадь: '+ spaceFull +', площадь без балкона: '+ spaceWithoutBalc +
+					'	</div>'+
+					'</div>'+
+					'<hr>'+
+					'<div class="row">'+
+					'	<div class="col">'+
+					'		Цена за квадратный метр: '+ sqmtPrice +', Общая стоимость: '+ totalPrice +
+					'	</div>'+
+					'</div>'+
+					'<hr>'+
+					'<div class="row">'+
+					'	<div class="col">'+
+					'		Статус: '+ statusName +
+					'	</div>'+ 
+					'</div>'+
+				'</div>'+
 			'</div>',
 			showCancelButton: true,
 			confirmButtonText: `Открыть запись`,

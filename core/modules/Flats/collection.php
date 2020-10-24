@@ -61,11 +61,13 @@ class Collection extends \RedCore\Base\Collection {
 	}
 	
 	/**
-	 * @method \RedCore\Base\Collection getList()
+	 * @method \RedCore\Base\Collection store()
 	 *
 	 * @return \RedCore\Users\ObjectBase ObjectBase
 	 */
 	public static function store($params = "") {
+		/* var_dump($_REQUEST);
+		exit(); */
 	    return parent::store($params);
 	}
 
@@ -136,7 +138,8 @@ class Collection extends \RedCore\Base\Collection {
 			}		
 		}
 	}
-
+	
+	
 
 	public static function Report(){
 		$file = "flats_report.xls";
@@ -150,8 +153,7 @@ class Collection extends \RedCore\Base\Collection {
 		header('Pragma: public');
 
 		require_once('flats.report.php');
+
 	}
 
 }
-
-?>

@@ -44,14 +44,6 @@ $col = $temp->object->params->flatsOnLvl;
 
 ?>
 <style>
-    .td-out{
-        border: 3px solid black;
-        text-align: center;
-    }
-    .th-out{
-        border: 3px solid black;
-        text-align: center;
-    }
 </style>
 <html>
     <header>
@@ -68,14 +60,14 @@ $col = $temp->object->params->flatsOnLvl;
                             <table id="" class="" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th class = "th-out">№ п/п</th>
-                                        <th class = "th-out">Статус квартиры</th>
-                                        <th class = "th-out">Номер квартиры</th>
-                                        <th class = "th-out">Число комнат</th>
-                                        <th class = "th-out">Общая площадь</th>
-                                        <th class = "th-out">Площадь без балкона</th>
-                                        <th class = "th-out">Цена за кв.м.</th>
-                                        <th class = "th-out">Общая стоимость</th>
+                                        <th style= "border: 1px solid black; text-align: center;">№ п/п</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Статус квартиры</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Номер квартиры</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Число комнат</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Общая площадь</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Площадь без балкона</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Цена за кв.м.</th>
+                                        <th style= "border: 1px solid black; text-align: center;">Общая стоимость</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -89,14 +81,14 @@ $col = $temp->object->params->flatsOnLvl;
                                         
                                         ?>
                                     <tr>
-                                        <td class = "td-out"><?=$i++?></td>
-                                        <td class = "td-out"><?=$ObjectStatus[$oFS->flatStatus]->object->title?></td>
-                                        <td class = "td-out"><?=$oFS->number?></td>
-                                        <td class = "td-out"><?=$oFS->rooms?></td>
-                                        <td class = "td-out"><?=$oFS->spaceFull?></td>
-                                        <td class = "td-out"><?=$oFS->spaceWithoutBalc?></td>
-                                        <td class = "td-out"><?=$oFS->sqmtPrice?></td>
-                                        <td class = "td-out"><?=$oFS->totalPrice?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$i++?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$ObjectStatus[$oFS->flatStatus]->object->title?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->number?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->rooms?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->spaceFull?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->spaceWithoutBalc?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->sqmtPrice?></td>
+                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->totalPrice?></td>
                                     </tr>
                                     <?php
                                     endforeach;
