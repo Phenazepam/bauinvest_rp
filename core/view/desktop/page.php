@@ -137,21 +137,7 @@
                     </ul>
                   </li>
                 </ul>
-                <ul class="nav side-menu">
-                  <li><a><i class="fa fa-database"></i> Отчеты <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                      <?php 
-                        $menu = Controller::Search("pages", "reports");
-                        
-                        foreach($menu as $item):
-                      ?>
-                      <li><a href="/<?=$item["url"]?>"><?=$item["title"]?></a></li>
-                      <?php 
-                        endforeach;
-                      ?>
-                    </ul>
-                  </li>
-                </ul>
+                
               </div>
             </div>
             <!-- /sidebar menu -->
