@@ -8,7 +8,7 @@
     Contract::setObject();
     $Contract = Contract::getList();
 
-    use RedCore\SaleObject\Collection as SaleObject;
+    use RedCore\Flats\Collection as SaleObject;
     SaleObject::setObject();
     $SaleObject = SaleObject::getList();
 
@@ -37,7 +37,7 @@
         
         array(
             "title"         => "Реестр объектов продажи",
-            "url"           => "saleobject-list",
+            "url"           => "buildings-list",
             "icon"          => "fa-university",
             "count"         => count($SaleObject),
             "percent"       => "&nbsp;",
