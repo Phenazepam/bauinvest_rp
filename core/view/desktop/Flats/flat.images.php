@@ -3,7 +3,7 @@ namespace RedCore\Flats;
 
 class FlatImages{
 
-	public static function Print(){
+	public static function CreateImgDiv(){
 		$out = '<div class="row">';
 		$images = array_diff(scandir("../images/flat_plans"), array('..', '.'));
 		$dir="/images/flat_plans/";

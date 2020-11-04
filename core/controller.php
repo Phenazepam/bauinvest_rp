@@ -471,6 +471,30 @@ class Controller {
 		        ),
 			),
 
+			// Справочник планировок квартир
+			array(
+		        "title"    => "Справочник планировок квартир",
+		        "url"      => "flatlayout-list",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/FlatLayout/list.php",
+		        "tag"      => array("top", "sprav"),
+				"default"  => false,
+				"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+		    ),
+		    
+		    array(
+		        "title"    => "Форма - Формы расчета",
+		        "url"      => "flatlayout-form",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/calculationform/form.php",
+				"tag"      => array(),
+				"access"   => array(
+		            "role" => array(3, 4),
+		        ),
+			),
+
 			
 			
 			//-------------------------------------------------
@@ -953,6 +977,14 @@ class Controller {
 		        "name"   => "flats.report.do",
 		        "module" => "RedCore\Flats\Collection",
 		        "method" => "Report",
+		        "params" => array(
+		            "flat",
+		        ),
+			),
+			array(
+		        "name"   => "flat.copylvls.do",
+		        "module" => "RedCore\Flats\Collection",
+		        "method" => "copylvls",
 		        "params" => array(
 		            "flat",
 		        ),

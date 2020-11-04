@@ -41,9 +41,8 @@ ObjectStatus::setObject();
 	);
 
 
-	$img = FlatImages::Print();
+	$img = FlatImages::CreateImgDiv();
 	
-
 
 
 $form = Forms::Create()
@@ -59,7 +58,7 @@ $form = Forms::Create()
 	->add("spaceFull", "Полная площадь", "text", $html_object . "[params][spaceFull]", htmlspecialchars($item->params->spaceFull), 6, true)
 	->add("spaceWithoutBalc", "Площадь без балкона", "text", $html_object . "[params][spaceWithoutBalc]", htmlspecialchars($item->params->spaceWithoutBalc), 6, true)
 	->add("sqmtPrice", "Цена за кв.м.", "text", $html_object . "[params][sqmtPrice]", htmlspecialchars($item->params->sqmtPrice), 6, true)
-	->add("totalPrice", "Полная стоимость", "text", $html_object . "[params][totalPrice]", htmlspecialchars($item->params->totalPrice), 6, true)
+	->add("totalPrice", "Полная стоимость (рассчитывается автоматически!)", "text", $html_object . "[params][totalPrice]", htmlspecialchars($item->params->totalPrice), 6, true)	
 	->add("flatStatus", "Статус квартиры", "select", $html_object . "[params][flatStatus]", htmlspecialchars($item->params->flatStatus), 6, true, $ObjectStatus_list)
 	
 	->add("flanPlan", "План квартиры", "html", $html_object . "[params][img]", $img, 6, true)
@@ -88,3 +87,22 @@ $form = Forms::Create()
 		</div>
 	</div>
 </div>
+
+<script>
+	
+	spaceFull = document.getElementById("spaceFull")
+	sqmtPrice = document.getElementById("sqmtPrice")
+	spaceFull.addEventListener("change", CountTotalPrice);
+	sqmtPrice.addEventListener("change", CountTotalPrice);
+
+	function CountTotalPrice(){
+	spaceFull = document.getElementById("spaceFull")
+	sqmtPrice = document.getElementById("sqmtPrice")
+	totalPrice = document.getElementById("totalPrice")
+	totalPrice.value = spaceFull.value * sqmtPrice.value
+
+	console.log(totalPrice.value);
+	}
+	
+
+</script>

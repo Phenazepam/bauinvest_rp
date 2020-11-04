@@ -100,7 +100,7 @@ class Collection {
         $lb_params = array(
             "id" => $params[self::$object]["id"]
         );
-        
+
         if($_tmp = self::loadBy($lb_params)) {
             $_tmp->delete();
             return true;

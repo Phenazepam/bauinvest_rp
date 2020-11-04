@@ -13,6 +13,7 @@ use \RedCore\Controller as Controller;
 use \RedCore\Flats\Collection as Flats;
 use \RedCore\Buildings\Collection as Buildings;
 use \RedCore\Core as Core;
+use RedCore\Request;
 use \RedCore\Where as Where;
 use RedCore\Session;
 
@@ -71,8 +72,14 @@ class Collection extends \RedCore\Base\Collection {
 	    return parent::store($params);
 	}
 
+	public static function delete($params = "") {
+		/* var_dump($_REQUEST);
+		exit(); */
+	    return parent::delete($params);
+	}
 
-	public static function copyvertical($params= "") {
+
+	public static function copyvertical($params= null) {
 		//var_dump($params["flat"]);
 	    if(array_key_exists("flat", $params)){
 			$lb_params = array(
@@ -139,7 +146,114 @@ class Collection extends \RedCore\Base\Collection {
 		}
 	}
 	
-	
+	public static function copylvls($params){
+		if(array_key_exists("flat", $params)){
+			$srcLvl = $params["flat"]["src"];
+			Flats::setObject("flat");
+			$id_b = Session::get("filter_building_id");
+			$where = Where::Cond()
+				->add("id_b", "=", $id_b)
+				->add('and')
+				->add("_deleted", "=", "0")
+				->add('and')
+				->add("y", "=", $srcLvl)
+				->parse();
+			$srcFlats = Flats::getList($where);
+			
+			$start = $params["flat"]["trgs"];
+			$end = $params["flat"]["trge"];
+
+			$errorMessage="Ошибка";
+			
+			for ($i=$start; $i <= $end; $i++) { 
+				foreach($srcFlats as $_tmp){
+					$check = Flats::checkFlatExistance($_tmp->object->x, $i);
+					if(!$check){
+						$params["flat"] = array(
+							"id_b" =>$_tmp->object->id_b,
+							"x" =>$_tmp->object->x,
+							"y" =>(string)$i,
+							"params"=> array(					
+								"number"=>$_tmp->object->params->number,						
+								"rooms"=>$_tmp->object->params->rooms,						
+								"spaceFull"=>$_tmp->object->params->spaceFull,					
+								"spaceWithoutBalc"=>$_tmp->object->params->spaceWithoutBalc,					
+								"sqmtPrice"=>$_tmp->object->params->sqmtPrice,				
+								"totalPrice"=>$_tmp->object->params->totalPrice,				
+								"flatStatus"=>$_tmp->object->params->flatStatus,
+								"img"=>$_tmp->object->params->img,								
+							)
+						);
+						Flats::store($params);
+					}
+					elseif("Error" == $check){
+						$errorMessage = "Несколько квартир с одними координатами!";
+					}
+					else{
+						//var_dump($check);
+						$params["flat"]["id"] = $check->object->id;
+						Flats::delete($params);
+
+						$params["flat"] = array(
+							"id_b" =>$_tmp->object->id_b,
+							"x" =>$_tmp->object->x,
+							"y" =>(string)$i,
+							"params"=> array(					
+								"number"=>$_tmp->object->params->number,						
+								"rooms"=>$_tmp->object->params->rooms,						
+								"spaceFull"=>$_tmp->object->params->spaceFull,					
+								"spaceWithoutBalc"=>$_tmp->object->params->spaceWithoutBalc,					
+								"sqmtPrice"=>$_tmp->object->params->sqmtPrice,				
+								"totalPrice"=>$_tmp->object->params->totalPrice,				
+								"flatStatus"=>$_tmp->object->params->flatStatus,
+								"img"=>$_tmp->object->params->img,								
+							)
+						);
+						Flats::store($params);
+
+					}
+				}
+			}
+			/* $message = array(
+				"status"=> "success",
+				"message"=> "Копирование успешно завершено.",
+			);
+			return json_encode($message); */
+		}
+		/* else{
+			$message = array(
+				"status"=> "error",
+				"message"=> $errorMessage,
+			);
+			return json_encode($message);
+		} */
+	}
+	public static function checkFlatExistance($x, $y){
+		Flats::setObject("flat");
+			$id_b = Session::get("filter_building_id");
+			$where = Where::Cond()
+				->add("id_b", "=", $id_b)
+				->add('and')
+				->add("_deleted", "=", "0")
+				->add('and')
+				->add("y", "=", $y)
+				->add('and')
+				->add("x", "=", $x)
+				->parse();
+			$out = Flats::getList($where);
+
+		if(0 == count($out)){
+			return false;
+		}
+		elseif(count($out) > 1){
+			return "Error";
+		}
+		else{
+			foreach($out as $tmp)
+			return $tmp;
+		}
+	}
+
 
 	public static function Report(){
 		$file = "flats_report.xls";

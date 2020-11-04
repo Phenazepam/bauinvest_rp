@@ -46,62 +46,83 @@ $col = $temp->object->params->flatsOnLvl;
 <style>
 </style>
 <html>
-    <header>
-    </header>
-    <body>        
+<header>
+</header>
+
+<body>
+  <div class="row">
+    <div class="col">
+      <h3>Квартиры Отчет</h3>
+      <h2>ЖК "<?= $complex ?>" Литер <?= $liter ?> Подъезд №<?= $entrance ?>
         <div class="row">
-            <div class="col">
-              <h3>Квартиры Отчет</h3>
-              <h2>ЖК "<?=$complex?>" Литер <?=$liter?> Подъезд №<?=$entrance?>             
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="">
-                            
-                            <table id="" class="" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th style= "border: 1px solid black; text-align: center;">№ п/п</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Статус квартиры</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Номер квартиры</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Число комнат</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Общая площадь</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Площадь без балкона</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Цена за кв.м.</th>
-                                        <th style= "border: 1px solid black; text-align: center;">Общая стоимость</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php 
-                                    $i =  1;
-                                    
-                                    foreach($items as $key => $item): 
-                                        
-                                        $oFS = $item->getFieldSet("flats-list");
-                                        
-                                        
-                                        ?>
-                                    <tr>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$i++?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$ObjectStatus[$oFS->flatStatus]->object->title?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->number?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->rooms?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->spaceFull?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->spaceWithoutBalc?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->sqmtPrice?></td>
-                                        <td style="border: 1px solid black; text-align: center;"><?=$oFS->totalPrice?></td>
-                                    </tr>
-                                    <?php
-                                    endforeach;
-                                    ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+          <div class="col-sm-12">
+            <div class="">
+              <table id="" class="" style="width:100%">
+                <thead>
+                  <tr>
+                    <th style="border: 1px solid black; text-align: center;">№ п/п</th>
+                    <th style="border: 1px solid black; text-align: center;">Статус квартиры</th>
+                    <th style="border: 1px solid black; text-align: center;">Номер квартиры</th>
+                    <th style="border: 1px solid black; text-align: center;">Число комнат</th>
+                    <th style="border: 1px solid black; text-align: center;">Общая площадь</th>
+                    <th style="border: 1px solid black; text-align: center;">Площадь без балкона</th>
+                    <th style="border: 1px solid black; text-align: center;">Цена за кв.м.</th>
+                    <th style="border: 1px solid black; text-align: center;">Общая стоимость</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $i =  1;
+
+                  foreach ($items as $key => $item) :
+                    $oFS = $item->getFieldSet("flats-list");
+                    $objectsCount++;
+                    $totalSpaceCount += $oFS->spaceFull;
+                    $totalPriceCount += $oFS->totalPrice;
+
+                  ?>
+                    <tr>
+                      <td style="border: 1px solid black; text-align: center;"><?= $i++ ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $ObjectStatus[$oFS->flatStatus]->object->title ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $oFS->number ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $oFS->rooms ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $oFS->spaceFull ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $oFS->spaceWithoutBalc ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $oFS->sqmtPrice ?></td>
+                      <td style="border: 1px solid black; text-align: center;"><?= $oFS->totalPrice ?></td>
+                    </tr>
+                  <?php
+                  endforeach;
+                  ?>
+                </tbody>
+              </table>
+              <div class="row">
+              <div class="col-sm-12">
+                <div>
+                  <h5>Итого</h5>
                 </div>
-          
+                <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th style="border: 1px solid black; text-align: center;">Общее количество элементов</th>
+                      <th style="border: 1px solid black; text-align: center;">Общая площадь</th>
+                      <th style="border: 1px solid black; text-align: center;">Общая стоимость</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <td style="border: 1px solid black; text-align: center;"><?= $objectsCount ?></td>
+                    <td style="border: 1px solid black; text-align: center;"><?= $totalSpaceCount ?></td>
+                    <td style="border: 1px solid black; text-align: center;"><?= $totalPriceCount ?></td>
+                  </tbody>
+                </table>
+              </div>
             </div>
+            </div>
+          </div>
         </div>
-    </body>
+
+    </div>
+  </div>
+</body>
+
 </html>
-
-

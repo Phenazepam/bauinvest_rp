@@ -25,8 +25,8 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 			"params"     => array(
 				"number" => "Number",
 				"rooms" => "String",
-				"spaceFull" => "Number",
-				"spaceWithoutBalc" => "Number",
+				"spaceFull" => "Float",
+				"spaceWithoutBalc" => "Float",
 				"sqmtPrice" => "Number",
 				"totalPrice" => "Number",
 				"flatStatus" => "String",
