@@ -9,11 +9,16 @@ use \RedCore\Where as Where;
 use \RedCore\Flats\CopyFlats as Copy;
 use \RedCore\Session as Session;
 
-
+if(isset($_POST["selectFilter"])){
+  $select_StatusObject = $_POST["selectFilter"];
+  Session::bind("selectFilter", "filter_StatusObject", -1);
+}
 
 Session::bind("building_id", "filter_building_id", -1);
 $id_b = Session::get("filter_building_id");
 
+
+$filter = Session::get("filter_StatusObject");
 
 $ChessTower = require('list.chessTower.php');
 
@@ -69,7 +74,6 @@ foreach ($items as $item) {
     "img" => $item->object->params->img,
   );
 }
-//var_dump($flats);
 
 
 $tower = ChessTower::Create($col, $row, $flats)->Build();
@@ -99,11 +103,39 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
             <div class="row">
               <div class="col-sm-12">
                 <div class="card-box table-responsive">
-
                   <a class="btn btn-primary" href="/flats-form?building_id=<?= $id_b ?>">Добавить <i class="fa fa-plus"></i></a>
+                  <a class="btn btn-primary" onClick="showHide('FilterDiv')" style="color: white; cursor: pointer;" id="showHideButton">Фильтр <i class="fa fa-filter"></i></a>
                   <a class="btn btn-primary" href="/flats-list?action=flats.report.do">Сформировать отчет <i class="fa text-left"></i></a>
-                  <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                    <thead>
+                  <div id="FilterDiv" style="display:none;">
+                    <hr>
+                    <h2>Фильтр</h2>
+                    <form action="/flats-list" method="POST">
+                    <div class="row">
+                      <div class="col">
+                        <select name="selectFilter" id="filter" class="form-control">
+                          <option selected disabled hidden>Статус объекта</option>
+                          <option value="-1">Не выбрано</option>
+                          <?php 
+                            foreach ($ObjectStatus as $key => $item) : 
+                              if($key == $filter):
+                                ?>
+                            <option value="<?= $key ?>" selected><?= $item->object->title ?></option>                            
+                            <?php else: ?>
+                              <option value="<?= $key ?>"><?= $item->object->title ?></option>                            
+                              <?php endif ?>
+                              
+                              <?php endforeach ?>
+                            </select>
+                          </div>
+                          <div class="col">
+                            <button type="submit" class="btn btn-primary">Применить фильтр</button>
+                          </div>
+                        </div>
+                      </form>
+                      <hr>
+                    </div>
+                      <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
                       <tr>
                         <th>№ п/п</th>
                         <th>Статус квартиры</th>
@@ -126,6 +158,9 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                         $totalSpaceCount += $oFS->spaceFull;
                         $totalPriceCount += $oFS->totalPrice;
 
+                        if (($oFS->flatStatus != $filter) and ($filter != -1) ){
+                        continue;
+                        }
 
                       ?>
                         <tr>
@@ -133,11 +168,11 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                           <td><?= $ObjectStatus[$oFS->flatStatus]->object->title ?></td>
                           <td><?= $oFS->number ?></td>
                           <td>
-                            <?php 
-                              if(0 == $oFS->rooms)
-                                echo "С";                              
-                              else
-                                echo $oFS->rooms;
+                            <?php
+                            if (0 == $oFS->rooms)
+                              echo "С";
+                            else
+                              echo $oFS->rooms;
                             ?>
                           </td>
                           <td><?= $oFS->spaceFull ?></td>
@@ -205,7 +240,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
         Действия
       </button>
       <div class="dropdown-menu">
-        <a class="dropdown-item" id="CopyLevel" maxY="<?=$row?>" maxX="<?=$col?>">Копировать этаж</a>
+        <a class="dropdown-item" id="CopyLevel" maxY="<?= $row ?>" maxX="<?= $col ?>">Копировать этаж</a>
         <!-- <div class="dropdown-divider"></div> -->
       </div>
       <div class="col">
@@ -317,6 +352,30 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
   })
 </script>
 
+<script type="text/javascript">
+    /**
+    * Функция Скрывает/Показывает блок 
+    **/
+    function showHide(element_id) {
+        //Если элемент с id-шником element_id существует
+        if (document.getElementById(element_id)) { 
+            //Записываем ссылку на элемент в переменную obj
+            var obj = document.getElementById(element_id); 
+            //Если css-свойство display не block, то: 
+            if (obj.style.display != "inline") { 
+                obj.style.display = "inline"; //Показываем элемент
+            }
+            else obj.style.display = "none"; //Скрываем элемент
+        }
+    }   
+    btn = document.getElementById('showHideButton')
+    slct = document.getElementById('filter')
+    if(slct.value != 'Статус объекта'){
+      btn.style.backgroundColor = 'red';
+      btn.style.border = 'red';
+    }
+</script>
+
 <style>
   /* *,
   *::before,
@@ -344,7 +403,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
 
   /* отобразить контент, связанный с вабранной радиокнопкой (input type="radio") */
   #tab-btn-1:checked~#content-1,
-  #tab-btn-2:checked~#content-2{
+  #tab-btn-2:checked~#content-2 {
     display: block;
   }
 
@@ -372,7 +431,8 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
     background-color: #fff;
     border-bottom: 1px solid #fff;
   }
-  .btn{
+
+  .btn {
     font-size: 16px;
     padding-top: 6px;
     padding-bottom: 6px;
