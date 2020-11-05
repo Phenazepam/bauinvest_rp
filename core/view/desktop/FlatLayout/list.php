@@ -20,9 +20,11 @@ $dir="/images/flat_plans/";
         <div class="row">
           <div class="col-sm-12">
             <div class="card-box table-responsive">
-              <p>Добавить новую планировку</p>
-              <input type="file" name="img" id="img" >
-              <a class="btn btn-primary" href="/saletype-form">Добавить</a>
+            <form action="/flatlayout-list?action=flatlayout.store.do" method="post" enctype="multipart/form-data">
+              <h2>Добавить новую планировку</h2>
+              <input type="file" name="flatlayout" id="img" >
+              <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
               <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                 <thead>
                   <tr>
@@ -46,7 +48,7 @@ $dir="/images/flat_plans/";
                             Действия
                           </button>
                           <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/flatlayout-list?action=flatlayout.delete.do&flatlayout[id]=<?= $oFS->id ?>">Удалить</a>
+                            <a class="dropdown-item" href="/flatlayout-list?action=flatlayout.delete.do&flatlayout[name]=<?= $img ?>">Удалить</a>
                           </div>
                         </div>
                       </td>

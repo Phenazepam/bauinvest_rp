@@ -484,17 +484,6 @@ class Controller {
 		        ),
 		    ),
 		    
-		    array(
-		        "title"    => "Форма - Формы расчета",
-		        "url"      => "flatlayout-form",
-		        "view"     => "desktop/page.php",
-		        "content"  => "desktop/calculationform/form.php",
-				"tag"      => array(),
-				"access"   => array(
-		            "role" => array(3, 4),
-		        ),
-			),
-
 			
 			
 			//-------------------------------------------------
@@ -987,6 +976,22 @@ class Controller {
 		        "method" => "copylvls",
 		        "params" => array(
 		            "flat",
+		        ),
+			),
+			array(
+		        "name"   => "flatlayout.store.do",
+		        "module" => "RedCore\FlatLayout\Collection",
+		        "method" => "store",
+		        "params" => array(
+		            "flatlayout",
+		        ),
+			),
+			array(
+		        "name"   => "flatlayout.delete.do",
+		        "module" => "RedCore\FlatLayout\Collection",
+		        "method" => "delete",
+		        "params" => array(
+		            "flatlayout",
 		        ),
 			),
 
