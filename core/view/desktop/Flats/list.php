@@ -9,7 +9,7 @@ use \RedCore\Where as Where;
 use \RedCore\Flats\CopyFlats as Copy;
 use \RedCore\Session as Session;
 
-if(isset($_POST["selectFilter"])){
+if (isset($_POST["selectFilter"])) {
   $select_StatusObject = $_POST["selectFilter"];
   Session::bind("selectFilter", "filter_StatusObject", -1);
 }
@@ -110,32 +110,32 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                     <hr>
                     <h2>Фильтр</h2>
                     <form action="/flats-list" method="POST">
-                    <div class="row">
-                      <div class="col">
-                        <select name="selectFilter" id="filter" class="form-control">
-                          <option selected disabled hidden>Статус объекта</option>
-                          <option value="-1">Не выбрано</option>
-                          <?php 
-                            foreach ($ObjectStatus as $key => $item) : 
-                              if($key == $filter):
-                                ?>
-                            <option value="<?= $key ?>" selected><?= $item->object->title ?></option>                            
-                            <?php else: ?>
-                              <option value="<?= $key ?>"><?= $item->object->title ?></option>                            
+                      <div class="row">
+                        <div class="col">
+                          <select name="selectFilter" id="filter" class="form-control">
+                            <option selected disabled hidden>Статус объекта</option>
+                            <option value="-1">Не выбрано</option>
+                            <?php
+                            foreach ($ObjectStatus as $key => $item) :
+                              if ($key == $filter) :
+                            ?>
+                                <option value="<?= $key ?>" selected><?= $item->object->title ?></option>
+                              <?php else : ?>
+                                <option value="<?= $key ?>"><?= $item->object->title ?></option>
                               <?php endif ?>
-                              
-                              <?php endforeach ?>
-                            </select>
-                          </div>
-                          <div class="col">
-                            <button type="submit" class="btn btn-primary">Применить фильтр</button>
-                          </div>
+
+                            <?php endforeach ?>
+                          </select>
                         </div>
-                      </form>
-                      <hr>
-                    </div>
-                      <table id="datatable" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
+                        <div class="col">
+                          <button type="submit" class="btn btn-primary">Применить фильтр</button>
+                        </div>
+                      </div>
+                    </form>
+                    <hr>
+                  </div>
+                  <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
                       <tr>
                         <th>№ п/п</th>
                         <th>Статус квартиры</th>
@@ -158,8 +158,8 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                         $totalSpaceCount += $oFS->spaceFull;
                         $totalPriceCount += $oFS->totalPrice;
 
-                        if (($oFS->flatStatus != $filter) and ($filter != -1) ){
-                        continue;
+                        if (($oFS->flatStatus != $filter) and ($filter != -1)) {
+                          continue;
                         }
 
                       ?>
@@ -331,51 +331,36 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
   });
 </script>
 
-<script>
-  $(document).ready(function() {
-    $('.DoCopyVertical').click(function(e) {
-      let flat_id = $(this).attr('data-flat-id')
-      $.ajax({
-        type: "post",
-        url: "core/view/desktop/Flats/copyFlats.php",
-        data: {
-          flat_id: flat_id,
-        },
-        success: function(response) {
-          Swal.fire({
-            title: response.text,
-          })
-
-        }
-      });
-    })
-  })
-</script>
-
 <script type="text/javascript">
-    /**
-    * Функция Скрывает/Показывает блок 
-    **/
-    function showHide(element_id) {
-        //Если элемент с id-шником element_id существует
-        if (document.getElementById(element_id)) { 
-            //Записываем ссылку на элемент в переменную obj
-            var obj = document.getElementById(element_id); 
-            //Если css-свойство display не block, то: 
-            if (obj.style.display != "inline") { 
-                obj.style.display = "inline"; //Показываем элемент
-            }
-            else obj.style.display = "none"; //Скрываем элемент
-        }
-    }   
-    btn = document.getElementById('showHideButton')
-    slct = document.getElementById('filter')
-    if(slct.value != 'Статус объекта'){
-      btn.style.backgroundColor = 'red';
-      btn.style.border = 'red';
+  /**
+   * Функция Скрывает/Показывает блок 
+   **/
+  function showHide(element_id) {
+    //Если элемент с id-шником element_id существует
+    if (document.getElementById(element_id)) {
+      //Записываем ссылку на элемент в переменную obj
+      var obj = document.getElementById(element_id);
+      //Если css-свойство display не block, то: 
+      if (obj.style.display != "inline") {
+        obj.style.display = "inline"; //Показываем элемент
+      } else obj.style.display = "none"; //Скрываем элемент
     }
+  }
+
+  //Красит кнопку "Фильтр" в красный цвет, если фильтр активен
+  btn = document.getElementById('showHideButton')
+  slct = document.getElementById('filter')
+  if (slct.value != 'Статус объекта') {
+    btn.style.backgroundColor = 'red';
+    btn.style.border = 'red';
+  }
 </script>
 
+
+
+
+
+<!-- Стиль для отображения вкладок -->
 <style>
   /* *,
   *::before,
