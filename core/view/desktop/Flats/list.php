@@ -50,7 +50,7 @@ $items = Flats::getList($where);
 $complex = $temp->object->complex;
 $liter = $temp->object->liter;
 $entrance = $temp->object->entrance;
-$id_b = $temp->object->id;
+//$id_b = $temp->object->id;
 $row = $temp->object->params->levels;
 $col = $temp->object->params->flatsOnLvl;
 
@@ -105,7 +105,8 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                 <div class="card-box table-responsive">
                   <a class="btn btn-primary" href="/flats-form?building_id=<?= $id_b ?>">Добавить <i class="fa fa-plus"></i></a>
                   <a class="btn btn-primary" onClick="showHide('FilterDiv')" style="color: white; cursor: pointer;" id="showHideButton">Фильтр <i class="fa fa-filter"></i></a>
-                  <a class="btn btn-primary" href="/flats-list?action=flats.report.do">Сформировать отчет <i class="fa text-left"></i></a>
+                  <a class="btn btn-primary" href="/flatlayout-list">Открыть планировки <i class="fa fa-picture-o"></i></a>
+                  <a class="btn btn-primary" href="/flats-list?action=flats.report.do">Сформировать отчет <i class="fa fa-newspaper-o"></i></a>
                   <div id="FilterDiv" style="display:none;">
                     <hr>
                     <h2>Фильтр</h2>
@@ -185,11 +186,11 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                                 Действия
                               </button>
                               <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/flats-list?action=flat.copyvertical.do&flat[id]=<?= $oFS->id ?>">Копировать квартиру на весь стояк</a>
-                                <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/flats-form?flat_id=<?= $oFS->id ?>">Редактировать</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="/flats-list?action=flat.delete.do&flat[id]=<?= $oFS->id ?>">Удалить</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="/flats-list?action=flat.copyvertical.do&flat[id]=<?= $oFS->id ?>">Копировать квартиру на весь стояк</a>
                               </div>
                             </div>
                           </td>

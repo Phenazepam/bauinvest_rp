@@ -6,6 +6,7 @@ use RedCore\Request as Request;
 use RedCore\Forms as Forms;
 use RedCore\Flats\FlatImages as FlatImages;
 
+
 require_once('flat.images.php');
 $html_object = "flat";
 
@@ -41,7 +42,7 @@ ObjectStatus::setObject();
 	);
 
 
-	$img = FlatImages::CreateImgDiv();
+	$img = FlatImages::CreateImgDiv($id_b);
 	
 
 
@@ -61,7 +62,7 @@ $form = Forms::Create()
 	->add("totalPrice", "Полная стоимость (рассчитывается автоматически!)", "text", $html_object . "[params][totalPrice]", htmlspecialchars($item->params->totalPrice), 6, true)	
 	->add("flatStatus", "Статус квартиры", "select", $html_object . "[params][flatStatus]", htmlspecialchars($item->params->flatStatus), 6, true, $ObjectStatus_list)
 	
-	->add("flanPlan", "План квартиры", "html", $html_object . "[params][img]", $img, 6, true)
+	->add("flatPlan", "План квартиры", "html", $html_object . "[params][img]", $img, 6, true)
 	
 	->parse();
 ?>

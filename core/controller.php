@@ -477,7 +477,7 @@ class Controller {
 		        "url"      => "flatlayout-list",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/FlatLayout/list.php",
-		        "tag"      => array("top", "sprav"),
+		        "tag"      => array("top", ""),
 				"default"  => false,
 				"access"   => array(
 		            "role" => array(2, 3, 4),
