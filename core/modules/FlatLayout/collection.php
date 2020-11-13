@@ -60,7 +60,7 @@ class Collection extends \RedCore\Base\Collection {
         );
 		# Допустимый размер загружаемого файла
         $max_filesize = 1382288;
-        
+        $quality = 60;
         # Директория для загрузки
 		$upload_path = '../images/flat_plans/';
 		
@@ -86,7 +86,22 @@ class Collection extends \RedCore\Base\Collection {
   			exit();
 		}
 		else{
-			move_uploaded_file($file['tmp_name'], $upload_path . $filename);
+			switch($_FILES['flatlayout']['type']){
+				case 'image/jpeg':
+				case 'image/pjpeg':
+				$source = imagecreatefromjpeg($_FILES['flatlayout']['tmp_name']);
+				//imagejpeg($source, $upload_path.$filename, $quality); //Сохраняем созданное изображение по указанному пути в формате jpg
+
+				break;
+
+				case 'image/png':
+				$source = imagecreatefrompng($_FILES['flatlayout']['tmp_name']);
+				//imagepng($source, $upload_path.$filename, 9);
+				break;
+			}
+			imagejpeg($source, $upload_path.$filename, $quality); //Сохраняем созданное изображение по указанному пути в формате jpg
+
+			imagedestroy($source);//Чистим память
 			header("Location: /flatlayout-list");
   			exit();
 		}

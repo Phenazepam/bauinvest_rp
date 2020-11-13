@@ -178,7 +178,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                           <td><?= $oFS->spaceFull ?></td>
                           <td><?= $oFS->spaceWithoutBalc ?></td>
                           <td><?= $oFS->sqmtPrice ?></td>
-                          <td><?= $oFS->totalPrice ?></td>
+                          <td><?= number_format($oFS->totalPrice, 0, ',',' ') ?></td>
                           <td>
                             <div class="btn-group btn-group-sm">
                               <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -219,7 +219,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
                   <tbody>
                     <td><?= $objectsCount ?></td>
                     <td><?= $totalSpaceCount ?></td>
-                    <td><?= $totalPriceCount ?></td>
+                    <td><?= number_format($totalPriceCount, 0, ',',' ') ?></td>
                   </tbody>
                 </table>
               </div>
