@@ -46,7 +46,7 @@ $where = Where::Cond()
 $items = Flats::getList($where);
 
 
-//var_dump($items);
+// var_dump($items);
 $complex = $temp->object->complex;
 $liter = $temp->object->liter;
 $entrance = $temp->object->entrance;
@@ -72,6 +72,7 @@ foreach ($items as $item) {
     "liter" => $temp->object->liter,
     "entrance" => $temp->object->entrance,
     "img" => $item->object->params->img,
+    "id_building" => $id_b,
   );
 }
 
@@ -272,6 +273,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
       let sqmtPrice = $(this).attr('data-cost-m2')
       let totalPrice = $(this).attr('data-cost-total')
       let img = $(this).attr('data-plan-img')
+      let id_b = $(this).attr('data-id-building')
       let statusName = $(this).attr('data-status-name')
       Swal.fire({
         width: '70%',
@@ -279,7 +281,7 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
         html: '<hr>' +
           '<div class="row">' +
           '<div class="col">' +
-          '	<img src="/images/flat_plans/' + img + '" width="300" height="400" alt="">' +
+          '	<img src="/images/flat_plans/'+ id_b + '/' + img + '" width="300" height="400" alt="">' +
           '</div>' +
           '<div class="col">' +
           '<div class="row">' +

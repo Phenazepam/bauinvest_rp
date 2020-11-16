@@ -126,6 +126,7 @@ class ChessTower{
                                 data-action="openAlert" 
                                 data-complex="'. $val["complex"] .'" 
                                 data-house="'. $val["liter"] .'" 
+                                data-id-building="'. $val["id_building"] .'" 
                                 data-section="" 
                                 data-entrance="'. $val["entrance"] .'" 
                                 data-floor="'. $val["y"] .'" 
