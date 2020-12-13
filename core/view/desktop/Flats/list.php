@@ -275,13 +275,14 @@ $tower = ChessTower::Create($col, $row, $flats)->Build();
       let img = $(this).attr('data-plan-img')
       let id_b = $(this).attr('data-id-building')
       let statusName = $(this).attr('data-status-name')
+      let nophoto = "/images/nophoto.jpg"
       Swal.fire({
         width: '70%',
         title: 'Квартира №' + number,
         html: '<hr>' +
           '<div class="row">' +
           '<div class="col">' +
-          '	<img src="/images/flat_plans/'+ id_b + '/' + img + '" width="300" height="400" alt="">' +
+          '	<img src="/images/flat_plans/'+ id_b + '/' + img + '" onError="this.src=\'/images/noimage.jpg\'" width="300" height="400" alt="">' +
           '</div>' +
           '<div class="col">' +
           '<div class="row">' +

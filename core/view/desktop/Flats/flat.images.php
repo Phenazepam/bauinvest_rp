@@ -10,7 +10,7 @@ class FlatImages{
 		$dir="/images/flat_plans/".$id_b.'/';
 		foreach($images as $img){
 			$out.= '<div class="col" style="border: 2px solid black;">
-						<input type="radio" name="flat[params][img]" class="form-control" id="img" value="'.$img.'" required> <img src="'.$dir.$img.'" width="150" height="200" alt="">
+						<input type="radio" name="flat[params][img]" class="form-control" id="img" value="'.$img.'" > <img src="'.$dir.$img.'" width="150" height="200" alt="">
 					</div>';
 
 

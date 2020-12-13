@@ -9,7 +9,7 @@ namespace RedCore;
 
 class Config {
 	
-	public static $website			= 'http://intouch.reduit-company.ru/';
+	public static $website			= 'http://bauinvest.western-studio.ru/';
 	public static $auth			    = true;
 	
 	public static $db				= true;
@@ -18,7 +18,7 @@ class Config {
 	public static $dbUser 			= 'westernsru_demo';
 	public static $dbPassword 		= 'westernsru_dem';
 	public static $dbType 			= 'mysql';
-	public static $dbTablePrefix	= 'intouchv3__';
+	public static $dbTablePrefix	= 'bauinvest__';
 	public static $dbDebug 			= false;
 }
 

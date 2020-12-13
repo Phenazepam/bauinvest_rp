@@ -482,9 +482,54 @@ class Controller {
 				"access"   => array(
 		            "role" => array(2, 3, 4),
 		        ),
+			),
+			
+
+		    //Справочник статей расхода первый уровень
+			array(
+		        "title"    => "Справочник статей расхода",
+		        "url"      => "expenditurefirst-list",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureFirst/list.php",
+		        "tag"      => array("top", "sprav"),
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
 		    ),
 		    
+		    array(
+		        "title"    => "Форма - Статьи расходов Первый уровень",
+		        "url"      => "expenditurefirst-form",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureFirst/form.php",
+		        "tag"      => array(),"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+			),
+			//Справочник статей расхода второй уровень
+			array(
+		        "title"    => "Справочник статей расхода",
+		        "url"      => "expendituresecond-list",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureSecond/list.php",
+		        "tag"      => array("top", ""),
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+		    ),
+		    
+		    array(
+		        "title"    => "Форма - Статьи расходов Первый уровень",
+		        "url"      => "expendituresecond-form",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureSecond/form.php",
+		        "tag"      => array(),"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+			),
 			
+
+
 			
 			//-------------------------------------------------
 
@@ -978,10 +1023,11 @@ class Controller {
 		            "flat",
 		        ),
 			),
+			//flatlayout
 			array(
 		        "name"   => "flatlayout.store.do",
 		        "module" => "RedCore\FlatLayout\Collection",
-		        "method" => "store",
+		        "method" => "storeImg",
 		        "params" => array(
 		            "flatlayout",
 		        ),
@@ -994,6 +1040,43 @@ class Controller {
 		            "flatlayout",
 		        ),
 			),
+			//expenditure first lvl
+			array(
+		        "name"   => "expenditurefirst.store.do",
+		        "module" => "RedCore\ExpenditureFirst\Collection",
+		        "method" => "store",
+		        "params" => array(
+		            "expenditurefirst",
+		        ),
+			),
+			array(
+		        "name"   => "expenditurefirst.delete.do",
+		        "module" => "RedCore\ExpenditureFirst\Collection",
+		        "method" => "delete",
+		        "params" => array(
+		            "expenditurefirst",
+		        ),
+			),
+			//expenditure second lvl
+			array(
+		        "name"   => "expendituresecond.store.do",
+		        "module" => "RedCore\ExpenditureSecond\Collection",
+		        "method" => "store",
+		        "params" => array(
+		            "expendituresecond",
+		        ),
+			),
+			array(
+		        "name"   => "expendituresecond.delete.do",
+		        "module" => "RedCore\ExpenditureSecond\Collection",
+		        "method" => "delete",
+		        "params" => array(
+		            "expendituresecond",
+		        ),
+			),
+
+
+
 
 			/*array(
 				"name"   => "agent.store.do",
@@ -1199,7 +1282,7 @@ class Controller {
 		header('location: ' . $redirect);
 	}
 	
-	public function isAccess($object = "") {
+	public static function isAccess($object = "") {
 		//debug(Config::$auth);
 		if(Config::$auth) {
 	        if(key_exists("access", $object)) {

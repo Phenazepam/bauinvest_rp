@@ -51,7 +51,7 @@ class Collection extends \RedCore\Base\Collection {
 	    return parent::getList($where);
 	}
 
-	public static function store()
+	public static function storeImg()
 	{
 		if (isset($_FILES['flatlayout'])) {
 			$id_b = Session::get("filter_building_id");

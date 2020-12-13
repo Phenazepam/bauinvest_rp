@@ -61,7 +61,8 @@ require_once(CMS_MODULE . SEP . 'ObjectStatus/collection.php');
 require_once(CMS_MODULE . SEP . 'Buildings/collection.php');
 require_once(CMS_MODULE . SEP . 'Flats/collection.php');
 require_once(CMS_MODULE . SEP . 'FlatLayout/collection.php');
-//require_once(CMS_MODULE . SEP . 'Flats/chessTower.php');
+require_once(CMS_MODULE . SEP . 'Expenditure/ExpenditureFirst/collection.php');
+require_once(CMS_MODULE . SEP . 'Expenditure/ExpenditureSecond/collection.php');
 require_once(CMS_MODULE . SEP . 'logger/collection.php');
 
 /*

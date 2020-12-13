@@ -62,7 +62,7 @@ $form = Forms::Create()
 	->add("totalPrice", "Полная стоимость (рассчитывается автоматически!)", "text", $html_object . "[params][totalPrice]", htmlspecialchars($item->params->totalPrice), 6, true)	
 	->add("flatStatus", "Статус квартиры", "select", $html_object . "[params][flatStatus]", htmlspecialchars($item->params->flatStatus), 6, true, $ObjectStatus_list)
 	
-	->add("flatPlan", "План квартиры", "html", $html_object . "[params][img]", $img, 6, true)
+	->add("flatPlan", "План квартиры", "html", $html_object . "[params][img]", $img, 6, false)
 	
 	->parse();
 ?>
