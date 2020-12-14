@@ -6,10 +6,10 @@
  * @copyright REDUIT Co.
  */
 
-namespace RedCore\ExpenditureSecond;
+namespace RedCore\ExpenditureThird;
 
 use \RedCore\Logger\Collection as Logger;
-use \RedCore\calculationform\Collection as calculationform;
+use \RedCore\ExpenditureThird\Collection as ExpenditureThird;
 use \RedCore\Controller as Controller;
 use \RedCore\Core as Core;
 use \RedCore\Where as Where;
@@ -24,11 +24,11 @@ class Collection extends \RedCore\Base\Collection {
 	/**
 	 * @method \RedCore\Base\Collection setObject()
 	 */
-	public static function setObject($obj = "expendituresecond") {
-		if("expendituresecond" == $obj) {
-			self::$object = "expendituresecond";
+	public static function setObject($obj = "expenditurethird") {
+		if("expenditurethird" == $obj) {
+			self::$object = "expenditurethird";
 			self::$sql    = Sql::$sqlExpenditure;
-			self::$class  = "RedCore\ExpenditureSecond\ObjectBase";
+			self::$class  = "RedCore\ExpenditureThird\ObjectBase";
 		}
 	}
 	
@@ -56,8 +56,8 @@ class Collection extends \RedCore\Base\Collection {
 	 * @return \RedCore\Users\ObjectBase Object
 	 */
 	public static function store($params = array()) {
-		$pid = Session::get("filter_expenditurefirst_id");
-		$params["expendituresecond"]['pid'] = $pid;
+		$pid = Session::get("filter_expendituresecond_id");
+		$params["expenditurethird"]['pid'] = $pid;
 		// var_dump($params);
 		
 	    return parent::store($params);

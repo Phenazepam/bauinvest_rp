@@ -527,14 +527,66 @@ class Controller {
 		            "role" => array(2, 3, 4),
 		        ),
 			),
-			
+			//Справочник статей расхода третий уровень
+			array(
+		        "title"    => "Справочник статей расхода",
+		        "url"      => "expenditurethird-list",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureThird/list.php",
+		        "tag"      => array("top", ""),
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+		    ),
+		    
+		    array(
+		        "title"    => "Форма - Статьи расходов Первый уровень",
+		        "url"      => "expenditurethird-form",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureThird/form.php",
+		        "tag"      => array(),"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+			),
 
 
 			
-			//-------------------------------------------------
-
+			//-----------------------------------------------------------------------------------------------
+			// Бухгалтерия
+			//-----------------------------------------------------------------------------------------------
+			array(
+		        "title"    => "Бюджет",
+		        "url"      => "bankescrow-list",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Budget/BankEscrow/list.php",
+		        // "content"  => "desktop/Budget/ExpenditureTree/DrawExpenditureTree.php",
+		        "tag"      => array("top", "bookkeeping"),
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+		    ),
+		    
+		    array(
+		        "title"    => "Форма - Статьи расходов Первый уровень",
+		        "url"      => "expenditurethird-form",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Expenditure/ExpenditureThird/form.php",
+		        "tag"      => array(),"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+			),
 			
-
+			array(
+		        "title"    => "Бюджет",
+		        "url"      => "expendituretree",
+		        "view"     => "desktop/empty.php",
+		        // "content"  => "desktop/Budget/BankEscrow/list.php",
+		        "content"  => "desktop/Budget/ExpenditureTree/DrawExpenditureTree.php",
+		        "tag"      => array("top", ""),
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+		    ),
 		    
 		    
 		    /*______________________________________________________________________________________________________________________________________________________
@@ -1072,6 +1124,23 @@ class Controller {
 		        "method" => "delete",
 		        "params" => array(
 		            "expendituresecond",
+		        ),
+			),
+			//expenditure third lvl
+			array(
+		        "name"   => "expenditurethird.store.do",
+		        "module" => "RedCore\ExpenditureThird\Collection",
+		        "method" => "store",
+		        "params" => array(
+		            "expenditurethird",
+		        ),
+			),
+			array(
+		        "name"   => "expenditurethird.delete.do",
+		        "module" => "RedCore\ExpenditureThird\Collection",
+		        "method" => "delete",
+		        "params" => array(
+		            "expenditurethird",
 		        ),
 			),
 

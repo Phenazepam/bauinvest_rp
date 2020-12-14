@@ -123,6 +123,21 @@
                   </li>
                 </ul>
                 <ul class="nav side-menu">
+                  <li><a><i class="fa fa-database"></i> Бухгалтерия <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                      <?php 
+                        $menu = Controller::Search("pages", "bookkeeping");
+                        
+                        foreach($menu as $item):
+                      ?>
+                      <li><a href="/<?=$item["url"]?>"><?=$item["title"]?></a></li>
+                      <?php 
+                        endforeach;
+                      ?>
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="nav side-menu">
                   <li><a><i class="fa fa-database"></i> Справочники <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <?php 
