@@ -555,7 +555,7 @@ class Controller {
 			// Бухгалтерия
 			//-----------------------------------------------------------------------------------------------
 			array(
-		        "title"    => "Бюджет",
+		        "title"    => "Бюджет банка на Эскроу",
 		        "url"      => "bankescrow-list",
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/Budget/BankEscrow/list.php",
