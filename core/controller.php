@@ -549,7 +549,28 @@ class Controller {
 		        ),
 			),
 
-
+			//Литеры
+			array(
+		        "title"    => "Бюджет банка на Эскроу",
+		        "url"      => "liter-list",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Liter/list.php",
+		        // "content"  => "desktop/Budget/ExpenditureTree/DrawExpenditureTree.php",
+		        "tag"      => array("top", "bookkeeping"),
+		        "default"  => false,"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+		    ),
+		    
+		    array(
+		        "title"    => "Форма - Статьи расходов Первый уровень",
+		        "url"      => "liter-form",
+		        "view"     => "desktop/page.php",
+		        "content"  => "desktop/Liter/form.php",
+		        "tag"      => array(),"access"   => array(
+		            "role" => array(2, 3, 4),
+		        ),
+			),
 			
 			//-----------------------------------------------------------------------------------------------
 			// Бухгалтерия
@@ -560,13 +581,13 @@ class Controller {
 		        "view"     => "desktop/page.php",
 		        "content"  => "desktop/Budget/BankEscrow/list.php",
 		        // "content"  => "desktop/Budget/ExpenditureTree/DrawExpenditureTree.php",
-		        "tag"      => array("top", "bookkeeping"),
+		        "tag"      => array("top", ""),
 		        "default"  => false,"access"   => array(
 		            "role" => array(2, 3, 4),
 		        ),
 		    ),
 		    
-		    array(
+		    /* array(
 		        "title"    => "Форма - Статьи расходов Первый уровень",
 		        "url"      => "expenditurethird-form",
 		        "view"     => "desktop/page.php",
@@ -574,7 +595,7 @@ class Controller {
 		        "tag"      => array(),"access"   => array(
 		            "role" => array(2, 3, 4),
 		        ),
-			),
+			), */
 			
 			array(
 		        "title"    => "Бюджет",
@@ -1075,6 +1096,7 @@ class Controller {
 		            "flat",
 		        ),
 			),
+
 			//flatlayout
 			array(
 		        "name"   => "flatlayout.store.do",
@@ -1144,7 +1166,34 @@ class Controller {
 		        ),
 			),
 
+			// liter
+			array(
+		        "name"   => "liter.store.do",
+		        "module" => "RedCore\Liter\Collection",
+		        "method" => "store",
+		        "params" => array(
+		            "liter",
+		        ),
+			),
+			array(
+		        "name"   => "liter.delete.do",
+		        "module" => "RedCore\Liter\Collection",
+		        "method" => "delete",
+		        "params" => array(
+		            "liter",
+		        ),
+			),
 
+
+			// Bank Escrow
+			array(
+		        "name"   => "bankescrow.generate.do",
+		        "module" => "RedCore\BankEscrow\Collection",
+		        "method" => "generate",
+		        "params" => array(
+		            "bankescrow",
+		        ),
+			),
 
 
 			/*array(

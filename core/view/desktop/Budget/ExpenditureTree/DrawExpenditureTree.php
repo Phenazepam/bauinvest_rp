@@ -54,11 +54,12 @@ function GetExpenditureItems($pid = 0)
 </style>
 <!-- <script src="core/view/desktop/Budget/ExpenditureTree/ExpenditureTreeScript.js">
 </script> -->
-<form action="" id="expenditureTree">
+<form method="post" id="expenditureTree" enctype="multipart/form-data" name="bankescrow">
     <div onclick="tree_toggle(arguments[0])" >
         <div>
             <h1>Статьи расхода</h1>
         </div>
+        <input type="text" name="test">
         <ul class="Container">
             <?php
             $firstItems = GetExpenditureItems(0);
@@ -72,13 +73,13 @@ function GetExpenditureItems($pid = 0)
             ?>
                     <li class="Node IsRoot ExpandClosed">
                         <div class="Expand"></div>
-                        <input type="checkbox" name="<?= $first->object->id ?>" />
+                        <input type="checkbox" name="<?= $first->object->id ?>" value="<?= $first->object->id ?>" class="tree_parent"/>
                         <div class="Content"><?= $first->object->title ?></div>
 
                     <?php else : ?>
                     <li class="Node IsRoot ExpandClosed IsLast">
                         <div class="Expand"></div>
-                        <input type="checkbox" name="<?= $first->object->id ?>" />
+                        <input type="checkbox" name="<?= $first->object->id ?>" value="<?= $first->object->id ?>" class="tree_parent"/>
                         <div class="Content"><?= $first->object->title ?></div>
                     <?php endif ?>
 
@@ -90,12 +91,12 @@ function GetExpenditureItems($pid = 0)
                         ?>
                                 <li class="Node ExpandClosed">
                                     <div class="Expand"></div>
-                                    <input type="checkbox" name="<?= $second->object->id ?>" />
+                                    <input type="checkbox" name="<?= $second->object->id ?>" value="<?= $second->object->id ?>" class="tree_child"/>
                                     <div class="Content"><?= $second->object->title ?></div>
                                 <?php else : ?>
                                 <li class="Node ExpandClosed IsLast">
                                     <div class="Expand"></div>
-                                    <input type="checkbox" name="<?= $second->object->id ?>" />
+                                    <input type="checkbox" name="<?= $second->object->id ?>" value="<?= $second->object->id ?>" class="tree_child"/>
                                     <div class="Content"><?= $second->object->title ?></div>
                                 <?php endif ?>
 
@@ -103,7 +104,7 @@ function GetExpenditureItems($pid = 0)
                                     <?php foreach (GetExpenditureItems($second->object->id) as $key => $third) : ?>
                                         <li class="Node ExpandLeaf IsLast">
                                             <div class="Expand"></div>
-                                            <input type="checkbox" name="<?= $second->object->id ?>" />
+                                            <input type="checkbox" name="<?= $third->object->id ?>" value="<?= $third->object->id ?>"/>
                                             <div class="Content"><?= $third->object->title ?></div>
                                         </li>
                                     <?php endforeach ?>

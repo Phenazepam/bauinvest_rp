@@ -64,6 +64,8 @@ require_once(CMS_MODULE . SEP . 'FlatLayout/collection.php');
 require_once(CMS_MODULE . SEP . 'Expenditure/ExpenditureFirst/collection.php');
 require_once(CMS_MODULE . SEP . 'Expenditure/ExpenditureSecond/collection.php');
 require_once(CMS_MODULE . SEP . 'Expenditure/ExpenditureThird/collection.php');
+require_once(CMS_MODULE . SEP . 'Liter/collection.php');
+require_once(CMS_MODULE . SEP . 'Budget/BankEscrow/collection.php');
 require_once(CMS_MODULE . SEP . 'logger/collection.php');
 
 /*

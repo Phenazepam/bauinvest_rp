@@ -1,27 +1,27 @@
 <?php
 
-use \RedCore\calculationform\Collection as calculationform;
+use \RedCore\BankEscrow\Collection as BankEscrow;
 use \RedCore\Where as Where;
+use \RedCore\Session as Session;
 
-calculationform::setObject("calculationform");
+Session::bind("liter_id", "filter_liter_id", -1);
+
+BankEscrow::setObject("bankescrow");
+
+$liter_id = Session::get("filter_liter_id");
 
 $where = Where::Cond()
   ->add("_deleted", "=", "0")
+  ->add("and")
+  ->add("liter_id", "=", $liter_id)
   ->parse();
 
-$items = calculationform::getList($where);
+$items = BankEscrow::getList($where);
 ?>
 
-<script src="core/view/desktop/Budget/ExpenditureTree/ExpenditureTreeScript.js">
-  
-</script>
+<script src="core/view/desktop/Budget/ExpenditureTree/ExpenditureTreeScript.js"></script>
 
-<?php 
-  
-    var_dump($_POST) ;
-  
 
-?>
 
 <div class="row">
   <div class="col-md-12 col-sm-12 ">

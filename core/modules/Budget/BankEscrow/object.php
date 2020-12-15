@@ -6,7 +6,7 @@
  * @copyright REDUIT Co.
  */
 
-namespace RedCore\Liter;
+namespace RedCore\BankEscrow;
 
 class ObjectBase extends \RedCore\Base\ObjectBase {
 	
@@ -15,12 +15,17 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 	}
 	
 	public function __construct() {
-		$this->table = "liter";
+		$this->table = "bankescrow";
 		
 		$this->properties = array(
 			"id"         => "Number",
-			"title"      => "String",
-			"complex"      => "String",
+			"liter_id"      => "Number",
+			"expenditure_id"      => "Number",
+			"params"     => array(
+				"budget" => "Number",
+			    "paid" => "Number",
+			    "rest" => "Number",
+			),
 		    "_deleted" => "Number",
 		);
 	}
@@ -29,11 +34,14 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 	    $oFS = array();
 	    
 	    switch ($name) {
-	        case 'liter-list':
+	        case 'buildings-list':
 	            $oFS = array(
 	               'id' => $this->object->id,
-	               'title' => $this->object->title,
-	               'complex' => $this->object->complex,
+	               'liter_id' => $this->object->liter_id,
+	               'expenditure_id' => $this->object->expenditure_id,
+	               'budget' => $this->object->params->budget,
+	               'paid' => $this->object->params->paid,
+	               'rest' => $this->object->params->rest,
 	            );
 	            break;
 	        default:

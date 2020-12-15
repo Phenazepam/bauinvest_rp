@@ -19,41 +19,42 @@ document.addEventListener('DOMContentLoaded', function() {
       Swal.fire({
         showCancelButton: true,
         confirmButtonText: `Сохранить`,
-        cancelButtonText: 'Отмена',
+        cancelButtonText: "Отмена",
         html: result,
-        width: '600px',
+        width: "600px",
         preConfirm: async () => {
-          
-          let formData = new FormData(document.querySelector("#expenditureTree"));
+          let formData = new FormData(
+            document.querySelector("#expenditureTree")
+          );
 
           const option = {
             method: "post",
-            body: formData
+            body: formData,
           };
           console.log(formData);
-          const response = await fetch("/bankescrow-list", option)
-          /* if (response.ok) {
-            const result = await response.json();
-            console.log(result);
-            if (result.status) {
-              //return response.text;
-              Swal.fire(
-                'Успешно',
-                result.message,
-                'success'
-              )
+          const response = await fetch("/bankescrow-list?action=bankescrow.generate.do", option);
+          if (response.ok) {
+            const res = await response.text();
+            /* if (res != null) {
+              Swal.fire({
+                title: "Успешно",
+                text: "Копирование успешно завершено.",
+                icon: "success",
+                preConfirm: () => {
+                  location.reload();
+                },
+              });
             } else {
-              Swal.fire(
-                'Ошибка',
-                result.message,
-                'error'
-              )
-            }
-          } */
-        }
-      })
+              Swal.fire("Ошибка", "При копировании произошла ошибка.", "error");
+            } */
+          }
+        },
+      });
     }
   }
+
+
+
 
   function tree_toggle(event) {
     event = event || window.event
@@ -81,3 +82,23 @@ document.addEventListener('DOMContentLoaded', function() {
   function hasClass(elem, className) {
     return new RegExp("(^|\\s)" + className + "(\\s|$)").test(elem.className)
   }
+
+  var treeParent = document.getElementsByClassName("tree_parent");
+for (var i = 0; i < treeParent.length; i++) {
+  treeParent[i].addEventListener("click", checkChildrenHandler);
+}
+function checkChildrenHandler() {
+  checkChildren(this);
+}
+//отмечаем детей если отмечен родитель
+function checkChildren(treeParent) {
+  var treeParent = treeParent;
+  var treeChildnodes = treeParent.parentNode.parentNode.parentNode.getElementsByClassName("tree_child");
+  for (var j = 0; j < treeChildnodes.length; j++) {
+    if (treeParent.checked) {
+      treeChildnodes[j].checked = true;
+    } else {
+      treeChildnodes[j].checked = false;
+    }
+  }
+}

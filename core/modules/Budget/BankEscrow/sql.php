@@ -6,18 +6,19 @@
  * @copyright REDUIT Co.
  */
 
-namespace RedCore\Liter;
+namespace RedCore\BankEscrow;
 
 class Sql {
 	public static 
-	   $sqlLiter = '
+	   $sqlBankEscrow = '
 			SELECT
 				id,
-				title,
-				complex,
+				liter_id,
+				expenditure_id,
+				params,
                 _deleted
 			FROM
-				bauinvest__liter
+				bauinvest__bankescrow
 		';
 	
 
