@@ -47,8 +47,8 @@ $items = Users::getList($where); */
                   ?>
                     <tr>
                       <td><?= $i++ ?></td>
-                      <td><?= $oFS->title ?></td>
                       <td><?= $oFS->complex ?></td>
+                      <td><?= $oFS->title ?></td>
                       <td>
                         <div class="btn-group btn-group-sm">
                           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

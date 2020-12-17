@@ -13,6 +13,7 @@ use \RedCore\Controller as Controller;
 use \RedCore\Core as Core;
 use \RedCore\Where as Where;
 use RedCore\Session;
+use \RedCore\BankEscrow\Collection as BankEscrow;
 
 require_once('sql.php');
 require_once('object.php');
@@ -51,15 +52,41 @@ class Collection extends \RedCore\Base\Collection {
 
 
 	public static function generate($params = array()) {
-		// var_dump($params);
-		var_dump($_POST);
-		// var_dump(file_get_contents('php://input'));
-		exit();
+		// var_dump($_POST);
+		$liter_id = Session::get("filter_liter_id");
+		$points = $_POST;
 
+		// var_dump($liter_id);
 
-
+		foreach($points as $key => $item){
+			$params["bankescrow"] = array(
+				"liter_id" => $liter_id,
+				"expenditure_id" =>$item,
+				"budget" => 0,
+				"paid" => 0,
+				"rest" => 0
+			);
+			var_dump($params["bankescrow"]);
+			parent::store($params);
+		}
 	    
+		exit();
 	}
+
+	public static function store() {
+		// $data = file_get_contents('php://input');
+		$data = json_decode(file_get_contents('php://input'));
+
+		$params["bankescrow"] = array(
+			"id" => $data->id,							
+			$data->type =>$data->value			
+		);
+		 parent::store($params);
+		// var_dump($params);
+		exit();
+	}
+
+	
 }
 
 ?>

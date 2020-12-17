@@ -488,9 +488,9 @@ class Controller {
 		    //Справочник статей расхода первый уровень
 			array(
 		        "title"    => "Справочник статей расхода",
-		        "url"      => "expenditurefirst-list",
+		        "url"      => "expenditure-list",
 		        "view"     => "desktop/page.php",
-		        "content"  => "desktop/Expenditure/ExpenditureFirst/list.php",
+		        "content"  => "desktop/Expenditure/list.php",
 		        "tag"      => array("top", "sprav"),
 		        "default"  => false,"access"   => array(
 		            "role" => array(2, 3, 4),
@@ -499,9 +499,9 @@ class Controller {
 		    
 		    array(
 		        "title"    => "Форма - Статьи расходов Первый уровень",
-		        "url"      => "expenditurefirst-form",
+		        "url"      => "expenditure-form",
 		        "view"     => "desktop/page.php",
-		        "content"  => "desktop/Expenditure/ExpenditureFirst/form.php",
+		        "content"  => "desktop/Expenditure/form.php",
 		        "tag"      => array(),"access"   => array(
 		            "role" => array(2, 3, 4),
 		        ),
@@ -600,9 +600,9 @@ class Controller {
 			array(
 		        "title"    => "Бюджет",
 		        "url"      => "expendituretree",
-		        "view"     => "desktop/empty.php",
+		        "view"     => "desktop/Budget/ExpenditureTree/DrawExpenditureTree.php",
 		        // "content"  => "desktop/Budget/BankEscrow/list.php",
-		        "content"  => "desktop/Budget/ExpenditureTree/DrawExpenditureTree.php",
+		        "content"  => "",
 		        "tag"      => array("top", ""),
 		        "default"  => false,"access"   => array(
 		            "role" => array(2, 3, 4),
@@ -1114,21 +1114,21 @@ class Controller {
 		            "flatlayout",
 		        ),
 			),
-			//expenditure first lvl
+			//expenditure 
 			array(
-		        "name"   => "expenditurefirst.store.do",
-		        "module" => "RedCore\ExpenditureFirst\Collection",
+		        "name"   => "expenditure.store.do",
+		        "module" => "RedCore\Expenditure\Collection",
 		        "method" => "store",
 		        "params" => array(
-		            "expenditurefirst",
+		            "expenditure",
 		        ),
 			),
 			array(
-		        "name"   => "expenditurefirst.delete.do",
-		        "module" => "RedCore\ExpenditureFirst\Collection",
+		        "name"   => "expenditure.delete.do",
+		        "module" => "RedCore\Expenditure\Collection",
 		        "method" => "delete",
 		        "params" => array(
-		            "expenditurefirst",
+		            "expenditure",
 		        ),
 			),
 			//expenditure second lvl
@@ -1190,6 +1190,14 @@ class Controller {
 		        "name"   => "bankescrow.generate.do",
 		        "module" => "RedCore\BankEscrow\Collection",
 		        "method" => "generate",
+		        "params" => array(
+		            "bankescrow",
+		        ),
+			),
+			array(
+		        "name"   => "bankescrow.store.do",
+		        "module" => "RedCore\BankEscrow\Collection",
+		        "method" => "store",
 		        "params" => array(
 		            "bankescrow",
 		        ),

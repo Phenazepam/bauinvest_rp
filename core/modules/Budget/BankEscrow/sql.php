@@ -15,7 +15,9 @@ class Sql {
 				id,
 				liter_id,
 				expenditure_id,
-				params,
+				budget,
+				paid,
+				rest,
                 _deleted
 			FROM
 				bauinvest__bankescrow

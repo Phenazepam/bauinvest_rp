@@ -1,8 +1,20 @@
-document.addEventListener('DOMContentLoaded', function() {
-    ShowTree();
-  });
+document.addEventListener('DOMContentLoaded', async function() {
+    // await showTree();
+});
 
-  async function ShowTree() {
+
+
+  function markChildren(parent){
+    console.log(parent);
+    p = parent.querySelectorAll('input[type="checkbox"]')
+    p.forEach(element => {
+      element.checked = !element.checked
+    });
+  };
+
+
+
+  async function showTree() {
     const option = {
       method: "POST",
       headers: {
@@ -35,6 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
           const response = await fetch("/bankescrow-list?action=bankescrow.generate.do", option);
           if (response.ok) {
             const res = await response.text();
+            location.reload()
             /* if (res != null) {
               Swal.fire({
                 title: "Успешно",
@@ -90,15 +103,14 @@ for (var i = 0; i < treeParent.length; i++) {
 function checkChildrenHandler() {
   checkChildren(this);
 }
-//отмечаем детей если отмечен родитель
-function checkChildren(treeParent) {
-  var treeParent = treeParent;
-  var treeChildnodes = treeParent.parentNode.parentNode.parentNode.getElementsByClassName("tree_child");
-  for (var j = 0; j < treeChildnodes.length; j++) {
-    if (treeParent.checked) {
-      treeChildnodes[j].checked = true;
-    } else {
-      treeChildnodes[j].checked = false;
-    }
-  }
-}
+
+
+/* function checkboxClick(parent,checkboxes) {
+	if($(parent).is(':checked')) {
+		$(checkboxes).prop('checked', true);
+	} else {
+		$(checkboxes).prop('checked', false);
+	}	
+} */
+
+
