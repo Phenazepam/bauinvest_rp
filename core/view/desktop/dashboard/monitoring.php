@@ -739,7 +739,8 @@ else {
 
 	// Add data
 	chart.data = <?=json_encode($data)?>;
-
+	var tmp = <?=json_encode($data)?>;
+	// console.log(chart.data[0].category);
 	// Make chart not full circle
 	chart.startAngle = -90;
 	chart.endAngle = 180;
@@ -787,12 +788,14 @@ else {
 	series2.columns.template.radarColumn.cornerRadius = 20;
 
 	series2.columns.template.adapter.add("fill", function(fill, target) {
+		// console.log(chart.data[target.dataItem.index]); 
 	  return chart.colors.getIndex(target.dataItem.index);
 	});
 
 	series2.columns.template.events.on("hit", function(ev) {
-	  //alert("Clicked on " + ev.target.dataItem.index );
-	  window.location.href = "/monitoring?id=" + ev.target.dataItem.index;
+	//   alert("Clicked on " + ev.target.dataItem.index );
+		console.log(tmp[ev.target.dataItem.index].category);
+	//   window.location.href = "/monitoring?id=" + ev.target.dataItem.index;
 	});
 
 
@@ -806,7 +809,7 @@ else {
 	
 	var chart = am4core.create("chartdiv1", am4charts.XYChart);
 
-chart.data = <?=json_encode($data1)?>;
+/* chart.data = <?=json_encode($data1)?>;
 
 chart.padding(40, 40, 40, 40);
 
@@ -847,13 +850,13 @@ series.columns.template.adapter.add("fill", function (fill, target) {
 
 
 categoryAxis.sortBySeries = series;
-	
+	 */
 	
 	
 	
 	
 
 	}); // end am4core.ready()
-	</script>
+</script>
 
 

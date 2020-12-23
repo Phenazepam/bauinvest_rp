@@ -21,9 +21,9 @@ class ObjectBase extends \RedCore\Base\ObjectBase {
 			"id"         => "Number",
 			"liter_id"      => "Number",
 			"expenditure_id"      => "Number",
-			"budget" => "Number",
-			"paid" => "Number",
-			"rest" => "Number",
+			"budget" => "Float",
+			"paid" => "Float",
+			"rest" => "Float",
 			"_deleted" => "Number",
 		);
 	}

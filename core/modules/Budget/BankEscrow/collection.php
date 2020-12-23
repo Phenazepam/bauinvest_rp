@@ -81,8 +81,8 @@ class Collection extends \RedCore\Base\Collection {
 			"id" => $data->id,							
 			$data->type =>$data->value			
 		);
-		 parent::store($params);
-		// var_dump($params);
+		var_dump($params);
+		parent::store($params);
 		exit();
 	}
 

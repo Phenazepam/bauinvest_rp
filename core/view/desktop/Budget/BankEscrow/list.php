@@ -180,9 +180,9 @@ $tree = getTree($list_ready[$liter_id]["tree"]);
                         <td style="padding-left: <?= $item["lvl"] * 10 ?>px;"><?= $sort ?></td>
                         <td style="padding-left: <?= $item["lvl"] * 10 ?>px;"><?= $item["title"] ?></td>
                         <?php endif; ?>
-                        <td data-id="<?= $item["id"] ?>" data-type="budget" class="editable"><?= $item["budget"] ?></td>
-                        <td data-id="<?= $item["id"] ?>" data-type="paid" class="editable"><?= $item["paid"] ?></td>
-                        <td data-id="<?= $item["id"] ?>" data-type="rest" class="editable"><?= $item["rest"] ?></td>
+                        <td data-id="<?= $item["id"] ?>" data-type="budget" class="editable"><?= number_format($item["budget"], 2, ',', ' ') ?></td>
+                        <td data-id="<?= $item["id"] ?>" data-type="paid" class="editable"><?= number_format($item["paid"], 2, ',', ' ') ?></td>
+                        <td data-id="<?= $item["id"] ?>" data-type="rest" class="editable"><?= number_format($item["rest"], 2, ',', ' ') ?></td>
                       <td>
                         <div class="btn-group btn-group-sm">
                           <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -291,7 +291,8 @@ function finishTdEdit(td, isOk) {
   }
   td.classList.remove('edit-td');
   editingTd = null;
-  save(td.dataset.id, td.dataset.type, td.innerHTML);
+  console.log(td.innerHTML.replace(/\s+/g,'').replace(',','.'));
+  save(td.dataset.id, td.dataset.type, td.innerHTML.replace(/\s+/g,'').replace(',','.'));
 
 }
 
@@ -311,3 +312,16 @@ async function  save(id, type, value){
   }
 }
 </script>
+<style>
+  .edit-ok,
+  .edit-cancel{
+    color: white;
+    background-color: rgb(0, 123, 255);
+    border-radius: 3px;
+    border: 0;
+    margin-top: 5px;
+    padding: 5px 10px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+</style>
